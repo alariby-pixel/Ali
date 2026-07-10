@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بوابة المنظومات الإلكترونية | Electronic Systems Portal</title>
+  <meta name="description" content="بوابة موحدة للوصول إلى جميع المنظومات الإلكترونية الخاصة بمدرسة الساحل، وإدارة الشؤون الفنية والهندسية، والجهات الحكومية." />
+  <meta name="author" content="علي بوغريبه" />
+  <meta property="og:title" content="بوابة المنظومات الإلكترونية" />
+  <meta property="og:description" content="بوابة موحدة للوصول إلى جميع المنظومات الإلكترونية في واجهة احترافية حديثة وسريعة وآمنة." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ar_AR" />
+  <link rel="icon" type="image/png" href="assets/images/1.png" />
+  <link rel="apple-touch-icon" href="assets/images/1.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="loader" role="progressbar" aria-label="جاري تحميل الموقع">
+  <div class="loader-bg"></div>
+  <div class="loader-inner">
+    <div class="loader-icon">
+      <img src="assets/images/1.png" alt="شعار بوابة المنظومات الإلكترونية" class="logo-img" />
+    </div>
+    <h2 class="loader-title">بوابة المنظومات الإلكترونية</h2>
+    <div class="loader-progress">
+      <div class="loader-track">
+        <div class="loader-bar" id="loaderBar"></div>
+      </div>
+      <span class="loader-percent" id="loaderPercent">0%</span>
+    </div>
+    <p class="loader-text" id="loaderText">جاري التحميل...</p>
+  </div>
+</div>
+
+<div id="progressBar" class="progress-bar" role="progressbar" aria-label="تقدم الصفحة"></div>
+
+<nav id="navbar" role="navigation" aria-label="القائمة الرئيسية">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <div class="nav-logo">
+        <img src="assets/images/1.png" alt="الشعار" class="logo-img" />
+      </div>
+      <span class="nav-title">المنظومات الإلكترونية</span>
+    </div>
+    <div class="nav-info" id="navInfo">
+      <button class="theme-toggle" id="themeToggle" aria-label="تغيير المظهر">
+        <i class="fas fa-moon"></i>
+      </button>
+      <div class="nav-clock" id="navClock">--:--:--</div>
+      <div class="nav-sep"></div>
+      <div class="nav-date" id="navDate">--</div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
+      <span class="toggle-bar"></span>
+      <span class="toggle-bar"></span>
+      <span class="toggle-bar"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="hero-wrapper">
+  <div class="hero-bg">
+    <div class="aurora" id="aurora"></div>
+    <div class="mesh-gradient"></div>
+    <div class="noise-overlay"></div>
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+    <div class="light-rays"></div>
+  </div>
+  <canvas id="particlesCanvas" class="particles-canvas"></canvas>
+
+  <section id="hero" aria-label="القسم الرئيسي">
+    <div class="hero-content">
+      <div class="hero-logo" id="heroLogo">
+        <img src="assets/images/1.png" alt="شعار بوابة المنظومات الإلكترونية" class="logo-img" />
+      </div>
+      <div class="hero-badge" id="heroBadge">
+        <i class="fas fa-bolt"></i>
+        <span>جميع المنظومات في مكان واحد</span>
+      </div>
+      <h1 class="hero-title" id="heroTitle">
+        بوابة المنظومات<br/>
+        <span class="text-gradient">الإلكترونية</span>
+      </h1>
+      <p class="hero-subtitle" id="heroSubtitle">
+        بوابة موحدة للوصول إلى جميع المنظومات الإلكترونية الخاصة بمدرسة الساحل، وإدارة الشؤون الفنية والهندسية، والجهات الحكومية، في واجهة احترافية حديثة وسريعة وآمنة.
+      </p>
+
+      <div class="hero-stats" id="heroStats">
+        <div class="stat-item">
+          <i class="fas fa-clock"></i>
+          <div class="stat-content">
+            <span class="stat-label">الوقت الآن</span>
+            <span class="stat-value" id="heroClock">--:--:--</span>
+          </div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <i class="fas fa-calendar-alt"></i>
+          <div class="stat-content">
+            <span class="stat-label">التاريخ</span>
+            <span class="stat-value" id="heroDate">--</span>
+          </div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <i class="fas fa-th-large"></i>
+          <div class="stat-content">
+            <span class="stat-label">المنظومات</span>
+            <span class="stat-value" id="heroTotal">8</span>
+          </div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <i class="fas fa-hand-peace"></i>
+          <div class="stat-content">
+            <span class="stat-label">مرحباً</span>
+            <span class="stat-value" id="heroWelcome">أهلاً بك</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator" id="scrollIndicator">
+      <span class="scroll-text">انتقل للأسفل</span>
+      <div class="scroll-mouse">
+        <div class="scroll-dot"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="search-section" id="searchSection">
+  <div class="container">
+    <div class="search-inner">
+      <div class="search-box">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="searchInput" placeholder="ابحث عن منظومة بالاسم أو الوصف..." autocomplete="off" aria-label="بحث في المنظومات" />
+        <button class="search-clear" id="searchClear" aria-label="مسح البحث">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="search-stats">
+        <span class="stats-count" id="resultsCount">8</span>
+        <span class="stats-label">منظومات متاحة</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section id="systems" aria-label="المنظومات الإلكترونية">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up" data-aos-duration="800">
+        <span class="section-badge">المنظومات</span>
+        <h2 class="section-title">جميع <span class="text-gradient">المنظومات</span></h2>
+        <div class="section-divider">
+          <span class="divider-icon"><i class="fas fa-cube"></i></span>
+        </div>
+      </div>
+      <div class="systems-grid" id="systemsGrid" role="list">
+      </div>
+      <div class="no-results" id="noResults" style="display:none;">
+        <div class="no-results-icon"><i class="fas fa-search"></i></div>
+        <h3>لا توجد نتائج</h3>
+        <p>لم نتمكن من العثور على منظومة تطابق بحثك. حاول بكلمات أخرى.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="footer" role="contentinfo">
+  <div class="footer-bg"></div>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <div class="footer-logo">
+          <img src="assets/images/1.png" alt="الشعار" class="logo-img" />
+          <span>المنظومات الإلكترونية</span>
+        </div>
+        <p>منصة متكاملة تضم جميع المنظومات الإلكترونية في مكان واحد لسهولة الوصول والاستخدام.</p>
+      </div>
+      <div class="footer-col">
+        <h4>روابط مهمة</h4>
+        <ul>
+          <li><a href="https://www.facebook.com/alsahaalschool" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> فيسبوك: مدرسة الساحل للتعليم الخاص</a></li>
+          <li><a href="tel:0917503180"><i class="fas fa-phone"></i> 0917503180</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>تواصل معنا</h4>
+        <div class="social-links">
+          <a href="https://www.facebook.com/alsahaalschool" target="_blank" rel="noopener" class="social-link" aria-label="فيسبوك">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="tel:0917503180" class="social-link" aria-label="الهاتف">
+            <i class="fas fa-phone"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-divider"></div>
+      <div class="footer-bottom-inner">
+        <p class="footer-copyright">&copy; <span id="footerYear">2026</span> جميع الحقوق محفوظة</p>
+        <p class="footer-credit">تصميم وتطوير <span class="text-gradient">علي بوغريبه</span></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="backToTop" class="back-to-top" aria-label="العودة إلى الأعلى" title="العودة إلى الأعلى">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</body>
+</html>
