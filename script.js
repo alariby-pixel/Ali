@@ -2,7 +2,7 @@ const SYSTEMS_CONFIG = [
   {
     id: 1,
     title: 'منظومة مدرسة الساحل المالية',
-    url: 'https://script.google.com/macros/s/AKfycbxlzTFPc-GIUJ5cNH1Nrx6uZ1MCewILLZdfqn7XG-wM1S471PxGx_47RVUi5K7uv6WVrw/exec',
+    url: 'https://script.google.com/macros/s/AKfycbwm3VszZws7SK7jZgUqak2QVRo8XvLADibqenrRNxj0HrwZFplbVN5VHu3OW0GSltJnlQ/exec',
     description: 'إدارة الرسوم الدراسية والحسابات والتقارير المالية.'
   },
   {
@@ -46,6 +46,12 @@ const SYSTEMS_CONFIG = [
     title: 'مركز المناهج والمقررات الدراسية',
     url: 'https://t.me/Manahej2026',
     description: 'الوصول إلى المناهج والمقررات الدراسية.'
+  },
+  {
+    id: 9,
+    title: 'بوابة إعلان نتيجة الشهادة الإعدادية والثانوية',
+    url: 'https://finalresults.nec.gov.ly/',
+    description: 'الاستعلام عن نتائج الشهادتين الإعدادية والثانوية.'
   }
 ];
 
@@ -448,6 +454,218 @@ const SYSTEMS_CONFIG = [
     });
   }
 
+  /* ===== WEATHER CODES ===== */
+  var WMO_CODES = {
+    0: { icon: 'fa-sun', desc: 'سماء صافية' },
+    1: { icon: 'fa-sun', desc: 'صافي بشكل عام' },
+    2: { icon: 'fa-cloud-sun', desc: 'غائم جزئياً' },
+    3: { icon: 'fa-cloud', desc: 'غائم' },
+    45: { icon: 'fa-smog', desc: 'ضباب' },
+    48: { icon: 'fa-smog', desc: 'ضباب كثيف' },
+    51: { icon: 'fa-cloud-rain', desc: 'رذاذ خفيف' },
+    53: { icon: 'fa-cloud-rain', desc: 'رذاذ متوسط' },
+    55: { icon: 'fa-cloud-rain', desc: 'رذاذ كثيف' },
+    61: { icon: 'fa-cloud-showers-heavy', desc: 'مطر خفيف' },
+    63: { icon: 'fa-cloud-showers-heavy', desc: 'مطر متوسط' },
+    65: { icon: 'fa-cloud-showers-heavy', desc: 'مطر غزير' },
+    80: { icon: 'fa-cloud-rain', desc: 'زخات مطر خفيفة' },
+    81: { icon: 'fa-cloud-rain', desc: 'زخات مطر متوسطة' },
+    82: { icon: 'fa-cloud-rain', desc: 'زخات مطر غزيرة' },
+    95: { icon: 'fa-bolt', desc: 'عاصفة رعدية' },
+    96: { icon: 'fa-bolt', desc: 'عاصفة رعدية مع برد' },
+    99: { icon: 'fa-bolt', desc: 'عاصفة رعدية شديدة' }
+  };
+
+  /* ===== FETCH WEATHER ===== */
+  function fetchWeather() {
+    var url = 'https://api.open-meteo.com/v1/forecast?latitude=32.285684&longitude=20.231585&current=temperature_2m,relative_humidity_2m,apparent_temperature,weathercode,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto&forecast_days=2';
+    fetch(url).then(function (r) { return r.json(); }).then(function (d) {
+      var c = d.current;
+      var w = WMO_CODES[c.weathercode] || { icon: 'fa-question', desc: '--' };
+      document.getElementById('weatherIcon').innerHTML = '<i class="fas ' + w.icon + '"></i>';
+      document.getElementById('weatherTemp').textContent = Math.round(c.temperature_2m) + '°C';
+      document.getElementById('weatherDesc').textContent = w.desc;
+      document.getElementById('weatherFeels').textContent = Math.round(c.apparent_temperature) + '°C';
+      document.getElementById('weatherHumidity').textContent = c.relative_humidity_2m + '%';
+      document.getElementById('weatherWind').textContent = Math.round(c.wind_speed_10m) + ' كم/س';
+    }).catch(function () {});
+  }
+
+  /* ===== PRAYER TIMES ===== */
+  function fetchPrayerTimes() {
+    var now = new Date();
+    var day = String(now.getDate()).padStart(2, '0');
+    var month = String(now.getMonth() + 1).padStart(2, '0');
+    var year = now.getFullYear();
+    var url = 'https://api.aladhan.com/v1/timings?latitude=32.285684&longitude=20.231585&method=3&timezonestring=Africa/Tripoli&date=' + day + '-' + month + '-' + year;
+    fetch(url).then(function (r) { return r.json(); }).then(function (d) {
+      if (d.data && d.data.timings) {
+        var t = d.data.timings;
+        var prayers = [
+          { name: 'الفجر', time: t.Fajr },
+          { name: 'الشروق', time: t.Sunrise },
+          { name: 'الظهر', time: t.Dhuhr },
+          { name: 'العصر', time: t.Asr },
+          { name: 'المغرب', time: t.Maghrib },
+          { name: 'العشاء', time: t.Isha }
+        ];
+        var list = document.getElementById('prayerList');
+        if (!list) return;
+        list.innerHTML = '';
+        prayers.forEach(function (p, i) {
+          list.innerHTML += '<div class="prayer-item" data-idx="' + i + '"><span class="prayer-name">' + p.name + '</span><span class="prayer-time">' + p.time + '</span></div>';
+        });
+        var currentTime = now.getHours() * 60 + now.getMinutes();
+        var currentPrayer = -1;
+        for (var ci = prayers.length - 1; ci >= 0; ci--) {
+          var parts = prayers[ci].time.split(':');
+          var prayerMin = parseInt(parts[0]) * 60 + parseInt(parts[1]);
+          if (currentTime >= prayerMin) { currentPrayer = ci; break; }
+        }
+        var nextIdx = currentPrayer + 1;
+        var cd = document.getElementById('prayerCountdown');
+        if (nextIdx < prayers.length) {
+          var nextP = prayers[nextIdx];
+          var nextParts = nextP.time.split(':');
+          var nextMin = parseInt(nextParts[0]) * 60 + parseInt(nextParts[1]);
+          var diff = nextMin - currentTime;
+          if (diff > 0) {
+            var hrs = Math.floor(diff / 60), mins = diff % 60;
+            cd.textContent = 'متبقي ' + hrs + ' ساعة ' + mins + ' دقيقة لصلاة ' + nextP.name;
+          } else {
+            cd.textContent = 'حان وقت صلاة ' + prayers[currentPrayer].name;
+          }
+          document.querySelectorAll('#prayerList .prayer-item')[currentPrayer] && document.querySelectorAll('#prayerList .prayer-item')[currentPrayer].classList.add('active');
+        } else {
+          cd.textContent = 'انتهت صلوات اليوم';
+        }
+      }
+    }).catch(function () {});
+  }
+
+  /* ===== EXCHANGE CALCULATOR ===== */
+  function initExchange() {
+    var cashIn = document.getElementById('exCashRate');
+    var chequeIn = document.getElementById('exChequeRate');
+    var amountIn = document.getElementById('exAmount');
+    if (!cashIn) return;
+
+    var saved = Store.get('exchangeRates', { cash: '6.20', cheque: '6.25' });
+    cashIn.value = saved.cash;
+    chequeIn.value = saved.cheque;
+
+    function calc() {
+      var cash = parseFloat(cashIn.value) || 0;
+      var cheque = parseFloat(chequeIn.value) || 0;
+      var amount = parseFloat(amountIn.value) || 0;
+      if (cash <= 0 || cheque <= 0 || amount <= 0) {
+        ['exBuyUsd1','exSellLyd1','exProfit1','exPercent1','exBuyUsd2','exSellLyd2','exProfit2','exPercent2'].forEach(function (id) { document.getElementById(id).textContent = '--'; });
+        return;
+      }
+      var buyUsd1 = amount / cash;
+      var sellLyd1 = buyUsd1 * cheque;
+      var profit1 = sellLyd1 - amount;
+      var pct1 = (profit1 / amount) * 100;
+      var buyUsd2 = amount / cheque;
+      var sellLyd2 = buyUsd2 * cash;
+      var profit2 = sellLyd2 - amount;
+      var pct2 = (profit2 / amount) * 100;
+      document.getElementById('exBuyUsd1').textContent = buyUsd1.toFixed(2) + ' $';
+      document.getElementById('exSellLyd1').textContent = sellLyd1.toFixed(2) + ' د.ل';
+      document.getElementById('exProfit1').textContent = (profit1 >= 0 ? '+' : '') + profit1.toFixed(2) + ' د.ل';
+      document.getElementById('exPercent1').textContent = (pct1 >= 0 ? '+' : '') + pct1.toFixed(2) + '%';
+      document.getElementById('exBuyUsd2').textContent = buyUsd2.toFixed(2) + ' $';
+      document.getElementById('exSellLyd2').textContent = sellLyd2.toFixed(2) + ' د.ل';
+      document.getElementById('exProfit2').textContent = (profit2 >= 0 ? '+' : '') + profit2.toFixed(2) + ' د.ل';
+      document.getElementById('exPercent2').textContent = (pct2 >= 0 ? '+' : '') + pct2.toFixed(2) + '%';
+    }
+
+    cashIn.addEventListener('input', calc);
+    chequeIn.addEventListener('input', calc);
+    amountIn.addEventListener('input', calc);
+
+    document.getElementById('exSaveBtn').addEventListener('click', function () {
+      Store.set('exchangeRates', { cash: cashIn.value, cheque: chequeIn.value });
+      var btn = this.querySelector('span');
+      btn.textContent = 'تم الحفظ ✓';
+      var self = this;
+      setTimeout(function () { btn.textContent = 'حفظ الأسعار'; }, 2000);
+    });
+
+    calc();
+  }
+
+  /* ===== CALCULATOR ===== */
+  function initCalculator() {
+    var display = document.getElementById('calcDisplay');
+    if (!display) return;
+    var current = '0', operator = null, previous = null, reset = false;
+
+    function updateDisplay() { display.textContent = current; }
+
+    document.querySelectorAll('.calc-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var val = this.getAttribute('data-val');
+        if (this.classList.contains('num')) {
+          if (reset || current === '0') { current = val; reset = false; }
+          else { current += val; }
+          updateDisplay();
+        } else if (val === 'C') {
+          current = '0'; operator = null; previous = null; reset = false; updateDisplay();
+        } else if (val === '±') {
+          current = String(parseFloat(current) * -1); updateDisplay();
+        } else if (val === '%') {
+          current = String(parseFloat(current) / 100); updateDisplay();
+        } else if (val === '=') {
+          if (operator && previous !== null) {
+            var a = parseFloat(previous), b = parseFloat(current);
+            var result = 0;
+            if (operator === '+') result = a + b;
+            else if (operator === '-') result = a - b;
+            else if (operator === '*') result = a * b;
+            else if (operator === '/') result = b !== 0 ? a / b : 'خطأ';
+            current = String(result); operator = null; previous = null; reset = true; updateDisplay();
+          }
+        } else {
+          if (operator && !reset) {
+            var a = parseFloat(previous || '0'), b = parseFloat(current);
+            if (val === '+') current = String(a + b);
+            else if (val === '-') current = String(a - b);
+            else if (val === '*') current = String(a * b);
+            else if (val === '/' && b !== 0) current = String(a / b);
+            else if (val === '/' && b === 0) current = 'خطأ';
+          }
+          operator = val; previous = current; reset = true; updateDisplay();
+        }
+      });
+    });
+  }
+
+  /* ===== EXCHANGE PANEL ===== */
+  function initExchangePanel() {
+    var openBtn = document.getElementById('openExchangeBtn');
+    var floatBtn = document.getElementById('floatExchangeBtn');
+    var overlay = document.getElementById('exchangeOverlay');
+    var panel = document.getElementById('exchangePanel');
+    var closeBtn = document.getElementById('exchangePanelClose');
+    if (!panel) return;
+
+    function open() { overlay.classList.add('active'); panel.classList.add('open'); document.body.style.overflow = 'hidden'; if (floatBtn) floatBtn.classList.add('active'); }
+    function close() { overlay.classList.remove('active'); panel.classList.remove('open'); document.body.style.overflow = ''; if (floatBtn) floatBtn.classList.remove('active'); }
+
+    if (openBtn) openBtn.addEventListener('click', open);
+    if (floatBtn) floatBtn.addEventListener('click', open);
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    if (overlay) overlay.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  }
+
+  /* ===== STORE HELPER ===== */
+  var Store = {
+    get: function (key, def) { try { var v = JSON.parse(localStorage.getItem('portal_' + key)); return v !== null ? v : def; } catch (e) { return def; } },
+    set: function (key, val) { try { localStorage.setItem('portal_' + key, JSON.stringify(val)); } catch (e) {} }
+  };
+
   /* ===== FOOTER YEAR ===== */
   document.getElementById('footerYear').textContent = new Date().getFullYear();
 
@@ -465,8 +683,11 @@ const SYSTEMS_CONFIG = [
     initBackToTop();
     initThemeToggle();
     initLenis();
-
-    gsap.fromTo('.search-section', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.6, ease: 'power3.out' });
+    initExchange();
+    initCalculator();
+    initExchangePanel();
+    fetchWeather();
+    fetchPrayerTimes();
   });
 
 })();

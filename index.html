@@ -170,7 +170,134 @@
       </div>
     </div>
   </section>
+
+  <!-- DAILY INFO -->
+  <section class="daily-section" id="dailyInfo">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-badge">معلومات يومية</span>
+        <h2 class="section-title">مواقيت الصلاة <span class="text-gradient">والطقس</span></h2>
+        <div class="section-divider"><span class="divider-icon"><i class="fas fa-cloud-sun"></i></span></div>
+      </div>
+      <div class="daily-grid">
+        <div class="daily-card" data-aos="fade-up">
+          <div class="daily-card-header"><i class="fas fa-mosque"></i><h3>مواقيت الصلاة</h3></div>
+          <div class="daily-card-body">
+            <div class="prayer-countdown" id="prayerCountdown">جاري التحميل...</div>
+            <div class="prayer-list" id="prayerList"></div>
+          </div>
+        </div>
+        <div class="daily-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="daily-card-header"><i class="fas fa-cloud-sun"></i><h3>الطقس - بنغازي</h3></div>
+          <div class="daily-card-body">
+            <div class="weather-main">
+              <div class="weather-icon" id="weatherIcon"><i class="fas fa-sun"></i></div>
+              <div class="weather-temp" id="weatherTemp">--°C</div>
+              <div class="weather-desc" id="weatherDesc">--</div>
+            </div>
+            <div class="weather-details">
+              <div class="weather-detail"><span>يشعر كـ</span><span id="weatherFeels">--</span></div>
+              <div class="weather-detail"><span>الرطوبة</span><span id="weatherHumidity">--</span></div>
+              <div class="weather-detail"><span>الرياح</span><span id="weatherWind">--</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS SECTION -->
+  <section class="tools-section" id="toolsSection">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-badge">أدوات</span>
+        <h2 class="section-title">أدوات <span class="text-gradient">سريعة</span></h2>
+        <div class="section-divider"><span class="divider-icon"><i class="fas fa-tools"></i></span></div>
+      </div>
+      <div class="tools-grid">
+        <div class="tool-card" data-aos="fade-up">
+          <div class="tool-card-header"><i class="fas fa-calculator"></i><h3>آلة حاسبة</h3></div>
+          <div class="tool-card-body">
+            <div class="calc-display" id="calcDisplay">0</div>
+            <div class="calc-buttons">
+              <button class="calc-btn op" data-val="C">C</button>
+              <button class="calc-btn op" data-val="±">±</button>
+              <button class="calc-btn op" data-val="%">%</button>
+              <button class="calc-btn op" data-val="/">÷</button>
+              <button class="calc-btn num" data-val="7">7</button>
+              <button class="calc-btn num" data-val="8">8</button>
+              <button class="calc-btn num" data-val="9">9</button>
+              <button class="calc-btn op" data-val="*">×</button>
+              <button class="calc-btn num" data-val="4">4</button>
+              <button class="calc-btn num" data-val="5">5</button>
+              <button class="calc-btn num" data-val="6">6</button>
+              <button class="calc-btn op" data-val="-">−</button>
+              <button class="calc-btn num" data-val="1">1</button>
+              <button class="calc-btn num" data-val="2">2</button>
+              <button class="calc-btn num" data-val="3">3</button>
+              <button class="calc-btn op" data-val="+">+</button>
+              <button class="calc-btn num zero" data-val="0">0</button>
+              <button class="calc-btn num" data-val=".">.</button>
+              <button class="calc-btn eq" data-val="=">=</button>
+            </div>
+          </div>
+        </div>
+        <div class="tool-card tool-exchange-btn" data-aos="fade-up" data-aos-delay="50" id="openExchangeBtn">
+          <div class="tool-card-header"><i class="fas fa-money-bill-transfer"></i><h3>حاسبة الصرف</h3></div>
+          <div class="tool-card-body">
+            <p>حساب الربح والخسارة من بيع الدولار كاش/صك</p>
+            <div class="tool-action"><i class="fas fa-arrow-left"></i><span>فتح حاسبة الصرف</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
+
+<!-- EXCHANGE PANEL OVERLAY -->
+<div class="panel-overlay" id="exchangeOverlay"></div>
+<div class="panel-slide" id="exchangePanel">
+  <div class="panel-slide-header">
+    <h3><i class="fas fa-money-bill-transfer"></i> سوق الصرف</h3>
+    <button class="panel-slide-close" id="exchangePanelClose"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="panel-slide-body">
+    <div class="ex-section">
+      <h4 class="ex-section-title">إعدادات الأسعار</h4>
+      <div class="ex-field">
+        <label>سعر الدولار كاش (دينار لكل 1 دولار)</label>
+        <div class="ex-input-wrap"><i class="fas fa-money-bill-1"></i><input type="number" id="exCashRate" step="0.01" placeholder="مثال: 6.20" /></div>
+      </div>
+      <div class="ex-field">
+        <label>سعر الدولار صك (دينار لكل 1 دولار)</label>
+        <div class="ex-input-wrap"><i class="fas fa-money-check"></i><input type="number" id="exChequeRate" step="0.01" placeholder="مثال: 6.25" /></div>
+      </div>
+      <button class="ex-save-btn" id="exSaveBtn"><i class="fas fa-save"></i><span>حفظ الأسعار</span></button>
+    </div>
+    <div class="ex-section">
+      <h4 class="ex-section-title">حساب الصرف</h4>
+      <div class="ex-field">
+        <label>المبلغ بالدينار الليبي</label>
+        <div class="ex-input-wrap"><i class="fas fa-coins"></i><input type="number" id="exAmount" step="0.01" placeholder="مثال: 5000" /></div>
+      </div>
+      <h5 class="ex-subtitle">السيناريو الأول: <span>شراء كاش ← بيع صك</span></h5>
+      <div class="ex-scenario">
+        <div class="ex-row"><span>تشتري دولار كاش</span><span class="ex-val" id="exBuyUsd1">--</span></div>
+        <div class="ex-row"><span>تبيع دولار بصك</span><span class="ex-val" id="exSellLyd1">--</span></div>
+        <div class="ex-row profit"><span>الربح</span><span class="ex-val gold" id="exProfit1">--</span></div>
+        <div class="ex-row"><span>نسبة الربح</span><span class="ex-val" id="exPercent1">--</span></div>
+      </div>
+      <h5 class="ex-subtitle">السيناريو الثاني: <span>شراء صك ← بيع كاش</span></h5>
+      <div class="ex-scenario">
+        <div class="ex-row"><span>تشتري دولار صك</span><span class="ex-val" id="exBuyUsd2">--</span></div>
+        <div class="ex-row"><span>تبيع دولار كاش</span><span class="ex-val" id="exSellLyd2">--</span></div>
+        <div class="ex-row profit"><span>الربح</span><span class="ex-val gold" id="exProfit2">--</span></div>
+        <div class="ex-row"><span>نسبة الربح</span><span class="ex-val" id="exPercent2">--</span></div>
+      </div>
+    </div>
+    <a href="https://fcms.cbl.gov.ly/" target="_blank" rel="noopener" class="cbl-btn"><i class="fas fa-external-link-alt"></i> بوابة مصرف ليبيا المركزي لحجز الدولار</a>
+  </div>
+</div>
 
 <footer id="footer" role="contentinfo">
   <div class="footer-bg"></div>
@@ -214,6 +341,10 @@
 
 <button id="backToTop" class="back-to-top" aria-label="العودة إلى الأعلى" title="العودة إلى الأعلى">
   <i class="fas fa-arrow-up"></i>
+</button>
+
+<button class="float-exchange-btn" id="floatExchangeBtn" aria-label="فتح حاسبة الصرف" title="حاسبة الصرف">
+  <i class="fas fa-money-bill-transfer"></i>
 </button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
