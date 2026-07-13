@@ -1056,21 +1056,9 @@ const SYSTEMS_CONFIG = [
     if (dlBtn) {
       var newDl = dlBtn.cloneNode(true);
       dlBtn.parentNode.replaceChild(newDl, dlBtn);
-      newDl.addEventListener('click', downloadConfig);
-    }
-
-    /* Remote config URL */
-    var remoteUrlInput = document.getElementById('sysRemoteUrl');
-    var remoteSaveBtn = document.getElementById('sysRemoteSaveBtn');
-    if (remoteUrlInput && remoteSaveBtn) {
-      remoteUrlInput.value = getRemoteConfigUrl();
-      var newRemoteSave = remoteSaveBtn.cloneNode(true);
-      remoteSaveBtn.parentNode.replaceChild(newRemoteSave, remoteSaveBtn);
-      newRemoteSave.addEventListener('click', function () {
-        var val = remoteUrlInput.value.trim();
-        setRemoteConfigUrl(val);
-        alert('تم حفظ رابط الإعدادات المشتركة');
-        if (val) fetchRemoteConfig();
+      newDl.addEventListener('click', function () {
+        downloadServerConfig();
+        alert('تم تحميل ملف systems-config.json\nارفع هذا الملف إلى مجلد الموقع على الاستضافة ليظهر للجميع.');
       });
     }
   }
@@ -1093,26 +1081,42 @@ const SYSTEMS_CONFIG = [
     renderSystemsData(all);
   }
 
-  /* Remote config sharing */
-  function getRemoteConfigUrl() { return Store.get('remoteConfigUrl', ''); }
-  function setRemoteConfigUrl(url) { Store.set('remoteConfigUrl', url); }
-  function fetchRemoteConfig() {
-    var url = getRemoteConfigUrl();
-    if (!url) return;
-    fetch(url)
-      .then(function (r) { return r.json(); })
+  /* Shared config via server JSON file */
+  function fetchServerConfig() {
+    fetch('systems-config.json?' + Date.now())
+      .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
       .then(function (data) {
-        if (!data || !data.systems) return;
-        window._allSystems = data.systems;
-        renderSystemsData(data.systems);
-        var totalEl = document.getElementById('resultsCount');
-        var heroEl = document.getElementById('heroTotal');
-        if (totalEl) totalEl.textContent = data.systems.length;
-        if (heroEl) heroEl.textContent = data.systems.length;
+        if (data && data.systems && data.systems.length > 0) {
+          /* Merge server config with localStorage overrides */
+          var overrides = getOverrides();
+          var custom = getCustomSystems();
+          var merged = data.systems.map(function (s) {
+            if (typeof s.id === 'number' && s.id <= SYSTEMS_CONFIG.length) {
+              var o = overrides[s.id];
+              return o ? { id: s.id, title: o.title, url: o.url, description: s.description, _logo: o._logo || undefined } : s;
+            }
+            return s;
+          });
+          custom.forEach(function (c) {
+            if (!merged.some(function (m) { return m.id === c.id; })) merged.push(c);
+          });
+          if (overrides && Object.keys(overrides).length > 0) {
+            merged = merged.map(function (s) {
+              var o = overrides[typeof s.id === 'number' ? s.id : ''];
+              return o ? { id: s.id, title: o.title, url: o.url, description: s.description, _logo: o._logo || undefined } : s;
+            });
+          }
+          window._allSystems = merged;
+          renderSystemsData(merged);
+          var totalEl = document.getElementById('resultsCount');
+          var heroEl = document.getElementById('heroTotal');
+          if (totalEl) totalEl.textContent = merged.length;
+          if (heroEl) heroEl.textContent = merged.length;
+        }
       })
       .catch(function () {});
   }
-  function downloadConfig() {
+  function downloadServerConfig() {
     var custom = getCustomSystems();
     var overrides = getOverrides();
     var all = SYSTEMS_CONFIG.map(function (s) {
@@ -1127,7 +1131,7 @@ const SYSTEMS_CONFIG = [
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
   }
   function renderSystemsData(arr) {
     var grid = document.getElementById('systemsGrid');
@@ -2627,7 +2631,7 @@ const SYSTEMS_CONFIG = [
     initParticles();
     initSearch();
     initSystems();
-    fetchRemoteConfig();
+    fetchServerConfig();
     initProgressBar();
     initBackToTop();
     initThemeToggle();
