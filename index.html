@@ -14,6 +14,8 @@
   <link rel="apple-touch-icon" href="assets/images/1.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.0/dist/leaflet-routing-machine.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -62,16 +64,80 @@
   </div>
   <nav class="sidebar-nav">
     <a class="sidebar-item active" data-page="home"><i class="fas fa-home"></i> الرئيسية</a>
-    <div class="sidebar-divider">الأدوات</div>
-    <a class="sidebar-item" data-page="exchange"><i class="fas fa-money-bill-transfer"></i> الصرف والدولار</a>
-    <a class="sidebar-item" data-page="calculator"><i class="fas fa-calculator"></i> آلة حاسبة</a>
-    <a class="sidebar-item" data-page="weather"><i class="fas fa-cloud-sun"></i> الطقس ومواقيت الصلاة</a>
-    <a class="sidebar-item" data-page="calendar"><i class="fas fa-calendar-alt"></i> التقويم الميلادي والهجري</a>
-    <div class="sidebar-divider">التنظيم</div>
-    <a class="sidebar-item" data-page="notes"><i class="fas fa-tasks"></i> مهام وملاحظات</a>
-    <a class="sidebar-item" data-page="reminders"><i class="fas fa-bell"></i> تذكير بالمواعيد</a>
-    <div class="sidebar-divider">روابط</div>
-    <a class="sidebar-item" data-page="social"><i class="fas fa-share-alt"></i> مواقع التواصل</a>
+    <div class="sidebar-group open">
+      <div class="sidebar-dropdown-toggle"><span><i class="fas fa-tools"></i> الأدوات</span><i class="fas fa-chevron-down"></i></div>
+      <div class="sidebar-submenu">
+        <a class="sidebar-item" data-page="exchange"><i class="fas fa-money-bill-transfer"></i> الصرف والدولار</a>
+        <a class="sidebar-item" data-page="calculator"><i class="fas fa-calculator"></i> آلة حاسبة</a>
+        <a class="sidebar-item" data-page="weather"><i class="fas fa-cloud-sun"></i> الطقس ومواقيت الصلاة</a>
+        <a class="sidebar-item" data-page="calendar"><i class="fas fa-calendar-alt"></i> التقويم الميلادي والهجري</a>
+      </div>
+    </div>
+    <div class="sidebar-group open">
+      <div class="sidebar-dropdown-toggle"><span><i class="fas fa-clipboard-list"></i> التنظيم</span><i class="fas fa-chevron-down"></i></div>
+      <div class="sidebar-submenu">
+        <a class="sidebar-item" data-page="notes"><i class="fas fa-tasks"></i> مهام وملاحظات</a>
+        <a class="sidebar-item" data-page="reminders"><i class="fas fa-bell"></i> تذكير بالمواعيد</a>
+        <a class="sidebar-item" data-page="social"><i class="fas fa-share-alt"></i> مواقع التواصل</a>
+      </div>
+    </div>
+    <div class="sidebar-group open">
+      <div class="sidebar-dropdown-toggle"><span><i class="fas fa-microchip"></i> أدوات متقدمة</span><i class="fas fa-chevron-down"></i></div>
+      <div class="sidebar-submenu">
+        <a class="sidebar-item" data-page="image2pdf"><i class="fas fa-file-pdf"></i> تحويل الصور PDF</a>
+        <a class="sidebar-item" data-page="qrcode"><i class="fas fa-qrcode"></i> قارئ QR Code</a>
+        <a class="sidebar-item" data-page="markdown"><i class="fas fa-pen-fancy"></i> محرر نصوص</a>
+      </div>
+    </div>
+    <div class="sidebar-group open">
+      <div class="sidebar-dropdown-toggle"><span><i class="fas fa-ruler-combined"></i> القياس والحسابات</span><i class="fas fa-chevron-down"></i></div>
+      <div class="sidebar-submenu">
+        <a class="sidebar-item" data-page="units"><i class="fas fa-ruler"></i> محول الوحدات</a>
+        <a class="sidebar-item" data-page="date-converter"><i class="fas fa-calendar-alt"></i> محول التاريخ</a>
+        <a class="sidebar-item" data-page="age-calc"><i class="fas fa-cake-candles"></i> حاسبة العمر</a>
+        <a class="sidebar-item" data-page="date-diff"><i class="fas fa-clock"></i> الفرق بين تاريخين</a>
+        <a class="sidebar-item" data-page="password-gen"><i class="fas fa-key"></i> مولد كلمات المرور</a>
+        <a class="sidebar-item" data-page="ip-calc"><i class="fas fa-network-wired"></i> حاسبة الشبكات</a>
+        <a class="sidebar-item" data-page="word-count"><i class="fas fa-font"></i> عداد الكلمات والحروف</a>
+        <a class="sidebar-item" data-page="grade-calc"><i class="fas fa-graduation-cap"></i> احتساب المعدل</a>
+      </div>
+    </div>
+    <div class="sidebar-group open">
+      <div class="sidebar-dropdown-toggle"><span><i class="fas fa-briefcase"></i> إنتاجية</span><i class="fas fa-chevron-down"></i></div>
+      <div class="sidebar-submenu">
+        <a class="sidebar-item" data-page="advanced-todo"><i class="fas fa-list-check"></i> منظم المهام المتقدم</a>
+        <a class="sidebar-item" data-page="timetable"><i class="fas fa-table"></i> جدول الحصص</a>
+        <a class="sidebar-item" data-page="journal"><i class="fas fa-book"></i> دفتر اليوميات</a>
+        <a class="sidebar-item" data-page="daily-quote"><i class="fas fa-quote-right"></i> حكمة اليوم</a>
+        <a class="sidebar-item" data-page="exam-editor"><i class="fas fa-file-pen"></i> محرر الامتحانات</a>
+      </div>
+    </div>
+    <div class="sidebar-group open">
+      <div class="sidebar-dropdown-toggle"><span><i class="fas fa-mosque"></i> مكتبة إسلامية</span><i class="fas fa-chevron-down"></i></div>
+      <div class="sidebar-submenu">
+        <a class="sidebar-item" data-page="islamic"><i class="fas fa-mosque"></i> المكتبة الإسلامية</a>
+        <a class="sidebar-item" data-page="prophets"><i class="fas fa-pray"></i> قصص الأنبياء</a>
+        <a class="sidebar-item" data-page="great100"><i class="fas fa-star-and-crescent"></i> 100 من عظماء الإسلام</a>
+      </div>
+    </div>
+    <div class="sidebar-group open">
+      <div class="sidebar-dropdown-toggle"><span><i class="fas fa-globe"></i> خدمات</span><i class="fas fa-chevron-down"></i></div>
+      <div class="sidebar-submenu">
+        <a class="sidebar-item" data-page="speedtest"><i class="fas fa-gauge-high"></i> فحص سرعة الإنترنت</a>
+        <a class="sidebar-item" data-page="ai-chat"><i class="fas fa-robot"></i> الذكاء الاصطناعي</a>
+        <a class="sidebar-item" data-page="map"><i class="fas fa-map-location-dot"></i> خرائط تفاعلية</a>
+      </div>
+    </div>
+    <div class="sidebar-group open">
+      <div class="sidebar-dropdown-toggle"><span><i class="fas fa-wallet"></i> مال ورياضة</span><i class="fas fa-chevron-down"></i></div>
+      <div class="sidebar-submenu">
+        <a class="sidebar-item" data-page="expense"><i class="fas fa-wallet"></i> المحفظة الذكية</a>
+        <a class="sidebar-item" data-page="football"><i class="fas fa-futbol"></i> كرة القدم</a>
+        <a class="sidebar-item" data-page="fitness"><i class="fas fa-dumbbell"></i> أنظمة التدريب البدني</a>
+      </div>
+    </div>
+    <div class="sidebar-divider" style="margin-top:8px;border-top:1px solid var(--glass-border);padding-top:8px;"></div>
+    <a class="sidebar-item" data-page="settings"><i class="fas fa-lock"></i> الإعدادات 🔒</a>
   </nav>
 </aside>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -433,6 +499,571 @@
   </div>
 </div>
 
+<!-- PAGE: IMAGE TO PDF -->
+<div class="page" data-page="image2pdf">
+  <div class="page-header"><i class="fas fa-file-pdf"></i><h2>تحويل الصور <span class="text-gradient">إلى PDF</span></h2></div>
+  <div class="page-body container">
+    <div class="img2pdf-grid">
+      <div class="tool-card">
+        <div class="tool-card-header"><i class="fas fa-image"></i><h3>صور ← PDF</h3></div>
+        <div class="tool-card-body">
+          <input type="file" id="pdfInput" accept="image/*" multiple style="display:none" />
+          <button class="ex-save-btn" id="pdfSelectBtn"><i class="fas fa-folder-open"></i> اختر الصور</button>
+          <div class="pdf-preview" id="pdfPreview"></div>
+          <button class="ex-save-btn" id="pdfConvertBtn" style="margin-top:12px;background:linear-gradient(135deg,#dc2626,#ef4444);" disabled><i class="fas fa-file-pdf"></i> تحويل وتنزيل PDF</button>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-header"><i class="fas fa-file-pdf"></i><h3>PDF ← صور</h3></div>
+        <div class="tool-card-body">
+          <input type="file" id="pdf2imgInput" accept="application/pdf" style="display:none" />
+          <button class="ex-save-btn" id="pdf2imgSelectBtn"><i class="fas fa-folder-open"></i> اختر ملف PDF</button>
+          <div class="pdf-preview" id="pdf2imgPreview"></div>
+          <button class="ex-save-btn" id="pdf2imgConvertBtn" style="margin-top:12px;background:linear-gradient(135deg,#2563eb,#3b82f6);" disabled><i class="fas fa-download"></i> تنزيل كصور</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: QR CODE -->
+<div class="page" data-page="qrcode">
+  <div class="page-header"><i class="fas fa-qrcode"></i><h2>قارئ <span class="text-gradient">QR Code</span></h2></div>
+  <div class="page-body container">
+    <div class="qr-grid">
+      <div class="tool-card">
+        <div class="tool-card-header"><i class="fas fa-camera"></i><h3>مسح بالكاميرا</h3></div>
+        <div class="tool-card-body">
+          <div id="qrReader" style="width:100%;max-width:400px;margin:0 auto;"></div>
+          <button class="ex-save-btn" id="qrStartBtn"><i class="fas fa-play"></i> بدء المسح</button>
+          <button class="ex-save-btn" id="qrStopBtn" style="background:linear-gradient(135deg,#dc2626,#ef4444);display:none;"><i class="fas fa-stop"></i> إيقاف</button>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-header"><i class="fas fa-upload"></i><h3>رفع صورة QR</h3></div>
+        <div class="tool-card-body">
+          <input type="file" id="qrFileInput" accept="image/*" style="display:none" />
+          <button class="ex-save-btn" id="qrFileBtn"><i class="fas fa-folder-open"></i> اختر صورة QR</button>
+          <div class="qr-result" id="qrResult"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: MARKDOWN EDITOR -->
+<div class="page" data-page="markdown">
+  <div class="page-header"><i class="fas fa-pen-fancy"></i><h2>محرر <span class="text-gradient">النصوص</span></h2></div>
+  <div class="page-body container">
+    <div class="md-grid">
+      <div class="md-pane"><h4>التحرير</h4><textarea id="mdInput" placeholder="اكتب هنا بصيغة Markdown..."></textarea></div>
+      <div class="md-pane"><h4>المعاينة</h4><div class="md-output" id="mdOutput"></div></div>
+    </div>
+    <div class="md-actions">
+      <button class="ex-save-btn" id="mdSaveBtn" style="width:auto;padding:10px 24px;"><i class="fas fa-download"></i> تحميل MD</button>
+      <button class="ex-save-btn" id="mdSaveHtmlBtn" style="width:auto;padding:10px 24px;"><i class="fas fa-download"></i> تحميل HTML</button>
+      <button class="ex-save-btn" id="mdClearBtn" style="width:auto;padding:10px 24px;background:linear-gradient(135deg,#dc2626,#ef4444);"><i class="fas fa-trash"></i> مسح</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: ADVANCED TODO -->
+<div class="page" data-page="advanced-todo">
+  <div class="page-header"><i class="fas fa-list-check"></i><h2>منظم المهام <span class="text-gradient">المتقدم</span></h2></div>
+  <div class="page-body container">
+    <div class="atodo-form">
+      <input type="text" id="atodoInput" placeholder="اسم المهمة..." />
+      <select id="atodoPriority"><option value="high">عالية 🔴</option><option value="medium" selected>متوسطة 🟡</option><option value="low">منخفضة 🟢</option></select>
+      <input type="date" id="atodoDate" />
+      <button id="atodoAddBtn"><i class="fas fa-plus"></i> إضافة</button>
+    </div>
+    <div class="atodo-filters">
+      <button class="atodo-filter active" data-filter="all">الكل</button>
+      <button class="atodo-filter" data-filter="high">عالية</button>
+      <button class="atodo-filter" data-filter="medium">متوسطة</button>
+      <button class="atodo-filter" data-filter="low">منخفضة</button>
+      <button class="atodo-filter" data-filter="done">تم</button>
+    </div>
+    <div class="atodo-list" id="atodoList"></div>
+  </div>
+</div>
+
+<!-- PAGE: TIMETABLE -->
+<div class="page" data-page="timetable">
+  <div class="page-header"><i class="fas fa-table"></i><h2>جدول <span class="text-gradient">الحصص</span></h2></div>
+  <div class="page-body container">
+    <div class="tt-form">
+      <input type="text" id="ttName" placeholder="اسم المادة/المهمة" />
+      <select id="ttDay"><option value="الأحد">الأحد</option><option value="الإثنين">الإثنين</option><option value="الثلاثاء">الثلاثاء</option><option value="الأربعاء">الأربعاء</option><option value="الخميس">الخميس</option><option value="الجمعة">الجمعة</option><option value="السبت">السبت</option></select>
+      <input type="time" id="ttStart" />
+      <input type="time" id="ttEnd" />
+      <button id="ttAddBtn"><i class="fas fa-plus"></i> إضافة</button>
+    </div>
+    <div class="tt-actions"><button class="ex-save-btn" id="ttPrintBtn" style="width:auto;padding:10px 24px;"><i class="fas fa-print"></i> طباعة</button></div>
+    <div class="tt-grid-wrap" id="ttGridWrap"></div>
+  </div>
+</div>
+
+<!-- PAGE: DAILY JOURNAL -->
+<div class="page" data-page="journal">
+  <div class="page-header"><i class="fas fa-book"></i><h2>دفتر <span class="text-gradient">اليوميات</span></h2></div>
+  <div class="page-body container">
+    <div class="journal-form">
+      <input type="text" id="journalTitle" placeholder="عنوان اليوم..." />
+      <textarea id="journalBody" placeholder="اكتب خواطرك وأفكارك هنا..."></textarea>
+      <button id="journalSaveBtn"><i class="fas fa-save"></i> حفظ اليوم</button>
+    </div>
+    <div class="journal-list" id="journalList"></div>
+  </div>
+</div>
+
+<!-- PAGE: DAILY QUOTE -->
+<div class="page" data-page="daily-quote">
+  <div class="page-header"><i class="fas fa-quote-right"></i><h2>حكمة <span class="text-gradient">اليوم</span></h2></div>
+  <div class="page-body container">
+    <div class="quote-card">
+      <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+      <div class="quote-text" id="quoteText">اضغط على الزر للحصول على حكمة</div>
+      <div class="quote-author" id="quoteAuthor">--</div>
+      <button class="ex-save-btn" id="quoteRefreshBtn" style="width:auto;padding:12px 32px;margin:20px auto 0;"><i class="fas fa-rotate"></i> حكمة جديدة</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: SPEED TEST -->
+<div class="page" data-page="speedtest">
+  <div class="page-header"><i class="fas fa-gauge-high"></i><h2>فحص سرعة <span class="text-gradient">الإنترنت</span></h2></div>
+  <div class="page-body container">
+    <div class="speed-grid">
+      <a href="https://www.speedtest.net/" target="_blank" rel="noopener" class="speed-card"><i class="fas fa-gauge-high"></i><span>Speedtest.net</span><small>Ookla</small></a>
+      <a href="https://fast.com/" target="_blank" rel="noopener" class="speed-card"><i class="fas fa-gauge-high"></i><span>Fast.com</span><small>Netflix</small></a>
+      <a href="https://www.nperf.com/" target="_blank" rel="noopener" class="speed-card"><i class="fas fa-gauge-high"></i><span>nPerf</span><small>اختبار متكامل</small></a>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: SETTINGS -->
+<div class="page" data-page="settings">
+  <div class="page-header"><i class="fas fa-lock"></i><h2>الإعدادات <span class="text-gradient">🔒</span></h2></div>
+  <div class="page-body container">
+    <div class="settings-lock" id="settingsLock">
+      <i class="fas fa-lock"></i>
+      <p>هذه الصفحة محمية، الرجاء إدخال رمز الدخول</p>
+      <div class="settings-pin-wrap"><input type="password" id="settingsPin" maxlength="10" placeholder="أدخل الرمز" /><button id="settingsUnlockBtn"><i class="fas fa-unlock"></i> دخول</button></div>
+      <div class="settings-pin-error" id="settingsPinError"></div>
+    </div>
+    <div class="settings-content" id="settingsContent" style="display:none;">
+      <h3 style="margin-bottom:20px;"><i class="fas fa-cog"></i> إدارة المنظومات</h3>
+      <div class="settings-sys-form">
+        <input type="text" id="sysName" placeholder="اسم المنظومة" />
+        <input type="url" id="sysUrl" placeholder="رابط المنظومة" />
+        <input type="file" id="sysLogo" accept="image/*" />
+        <button id="sysAddBtn"><i class="fas fa-plus"></i> إضافة منظومة</button>
+      </div>
+      <div class="settings-sys-list" id="settingsSysList"></div>
+      <button id="sysResetBtn" style="margin-top:20px;padding:10px 20px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:var(--radius-md);color:#fff;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:var(--font-sans);"><i class="fas fa-undo"></i> استعادة المنظومات الافتراضية</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: UNITS CONVERTER -->
+<div class="page" data-page="units">
+  <div class="page-header"><i class="fas fa-ruler"></i><h2>محول <span class="text-gradient">الوحدات</span></h2></div>
+  <div class="page-body container">
+    <div class="tool-tabs" id="unitsTabs">
+      <button class="tool-tab active" data-unit="length"><i class="fas fa-ruler"></i> الطول</button>
+      <button class="tool-tab" data-unit="weight"><i class="fas fa-weight-scale"></i> الوزن</button>
+      <button class="tool-tab" data-unit="temp"><i class="fas fa-temperature-half"></i> الحرارة</button>
+    </div>
+    <div class="uc-content" id="ucLength">
+      <div class="uc-field"><label>المتر (m)</label><input type="number" class="uc-input" data-u="m" value="1" /></div>
+      <div class="uc-field"><label>السنتيمتر (cm)</label><input type="number" class="uc-input" data-u="cm" value="100" /></div>
+      <div class="uc-field"><label>المليمتر (mm)</label><input type="number" class="uc-input" data-u="mm" value="1000" /></div>
+      <div class="uc-field"><label>الكيلومتر (km)</label><input type="number" class="uc-input" data-u="km" value="0.001" /></div>
+      <div class="uc-field"><label>القدم (ft)</label><input type="number" class="uc-input" data-u="ft" value="3.28084" /></div>
+      <div class="uc-field"><label>البوصة (in)</label><input type="number" class="uc-input" data-u="in" value="39.3701" /></div>
+      <div class="uc-field"><label>الميل (mi)</label><input type="number" class="uc-input" data-u="mi" value="0.000621371" /></div>
+    </div>
+    <div class="uc-content" id="ucWeight" style="display:none">
+      <div class="uc-field"><label>الكيلوغرام (kg)</label><input type="number" class="uc-input" data-u="kg" value="1" /></div>
+      <div class="uc-field"><label>الغرام (g)</label><input type="number" class="uc-input" data-u="g" value="1000" /></div>
+      <div class="uc-field"><label>الرطل (lb)</label><input type="number" class="uc-input" data-u="lb" value="2.20462" /></div>
+      <div class="uc-field"><label>الأونصة (oz)</label><input type="number" class="uc-input" data-u="oz" value="35.274" /></div>
+      <div class="uc-field"><label>الطن (t)</label><input type="number" class="uc-input" data-u="t" value="0.001" /></div>
+    </div>
+    <div class="uc-content" id="ucTemp" style="display:none">
+      <div class="uc-field"><label>مئوي (°C)</label><input type="number" class="uc-input" data-u="celsius" value="0" /></div>
+      <div class="uc-field"><label>فهرنهايت (°F)</label><input type="number" class="uc-input" data-u="fahrenheit" value="32" /></div>
+      <div class="uc-field"><label>كلفن (K)</label><input type="number" class="uc-input" data-u="kelvin" value="273.15" /></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: DATE CONVERTER -->
+<div class="page" data-page="date-converter">
+  <div class="page-header"><i class="fas fa-calendar-alt"></i><h2>محول <span class="text-gradient">التاريخ</span></h2></div>
+  <div class="page-body container">
+    <div class="tool-tabs" id="dcTabs">
+      <button class="tool-tab active" data-dc="gtoh">هجري ← ميلادي</button>
+      <button class="tool-tab" data-dc="htog">ميلادي ← هجري</button>
+    </div>
+    <div class="dc-pane" id="dcGtoh">
+      <div class="dc-fields"><input type="number" id="dcGDay" placeholder="يوم" min="1" max="31" /><input type="number" id="dcGMonth" placeholder="شهر" min="1" max="12" /><input type="number" id="dcGYear" placeholder="سنة" /></div>
+      <button class="ex-save-btn" id="dcGtohBtn" style="width:auto;padding:10px 24px;margin:10px auto 0;"><i class="fas fa-exchange-alt"></i> تحويل</button>
+      <div class="dc-result" id="dcGtohResult"></div>
+    </div>
+    <div class="dc-pane" id="dcHtog" style="display:none">
+      <div class="dc-fields"><input type="number" id="dcHDay" placeholder="يوم" min="1" max="30" /><input type="number" id="dcHMonth" placeholder="شهر" min="1" max="12" /><input type="number" id="dcHYear" placeholder="سنة" /></div>
+      <button class="ex-save-btn" id="dcHtogBtn" style="width:auto;padding:10px 24px;margin:10px auto 0;"><i class="fas fa-exchange-alt"></i> تحويل</button>
+      <div class="dc-result" id="dcHtogResult"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: AGE CALCULATOR -->
+<div class="page" data-page="age-calc">
+  <div class="page-header"><i class="fas fa-cake-candles"></i><h2>حاسبة <span class="text-gradient">العمر</span></h2></div>
+  <div class="page-body container">
+    <div class="ac-form">
+      <label>تاريخ الميلاد</label>
+      <input type="date" id="acBirth" />
+      <button class="ex-save-btn" id="acCalcBtn" style="width:auto;padding:10px 24px;margin:10px auto 0;display:flex;"><i class="fas fa-calculator"></i> احسب عمري</button>
+    </div>
+    <div class="ac-result" id="acResult"></div>
+  </div>
+</div>
+
+<!-- PAGE: DATE DIFFERENCE -->
+<div class="page" data-page="date-diff">
+  <div class="page-header"><i class="fas fa-clock"></i><h2>الفرق بين <span class="text-gradient">تاريخين</span></h2></div>
+  <div class="page-body container">
+    <div class="dd-form">
+      <div class="dd-field"><label>تاريخ البداية</label><input type="date" id="ddStart" /></div>
+      <div class="dd-field"><label>تاريخ النهاية</label><input type="date" id="ddEnd" /></div>
+      <button class="ex-save-btn" id="ddCalcBtn" style="width:auto;padding:10px 24px;margin:10px auto 0;display:flex;"><i class="fas fa-calculator"></i> احسب الفرق</button>
+    </div>
+    <div class="dd-result" id="ddResult"></div>
+  </div>
+</div>
+
+<!-- PAGE: PASSWORD GENERATOR -->
+<div class="page" data-page="password-gen">
+  <div class="page-header"><i class="fas fa-key"></i><h2>مولد كلمات <span class="text-gradient">المرور</span></h2></div>
+  <div class="page-body container">
+    <div class="pg-form">
+      <div class="pg-row"><label>طول كلمة المرور</label><input type="range" id="pgLength" min="4" max="64" value="16" /><span id="pgLengthVal">16</span></div>
+      <div class="pg-row pg-opts">
+        <label><input type="checkbox" id="pgUpper" checked /> حروف كبيرة (A-Z)</label>
+        <label><input type="checkbox" id="pgLower" checked /> حروف صغيرة (a-z)</label>
+        <label><input type="checkbox" id="pgNumbers" checked /> أرقام (0-9)</label>
+        <label><input type="checkbox" id="pgSymbols" /> رموز (!@#$)</label>
+      </div>
+      <button class="ex-save-btn" id="pgGenBtn" style="width:auto;padding:10px 24px;display:flex;"><i class="fas fa-shield"></i> توليد</button>
+      <div class="pg-output-wrap"><input type="text" id="pgOutput" readonly /><button class="ex-save-btn" id="pgCopyBtn" style="padding:10px 16px;width:auto;"><i class="fas fa-copy"></i></button></div>
+      <div class="pg-strength" id="pgStrength"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: IP CALCULATOR -->
+<div class="page" data-page="ip-calc">
+  <div class="page-header"><i class="fas fa-network-wired"></i><h2>حاسبة <span class="text-gradient">الشبكات</span></h2></div>
+  <div class="page-body container">
+    <div class="ip-form">
+      <label>عنوان IP (مثال: 192.168.1.1)</label>
+      <input type="text" id="ipInput" placeholder="192.168.1.1" />
+      <label style="margin-top:10px;">قناع الشبكة (Subnet Mask)</label>
+      <select id="ipMask">
+        <option value="0">/0 (0.0.0.0)</option>
+        <option value="8">/8 (255.0.0.0)</option>
+        <option value="16">/16 (255.255.0.0)</option>
+        <option value="24" selected>/24 (255.255.255.0)</option>
+        <option value="32">/32 (255.255.255.255)</option>
+      </select>
+      <button class="ex-save-btn" id="ipCalcBtn" style="width:auto;padding:10px 24px;margin:10px auto 0;display:flex;"><i class="fas fa-calculator"></i> احسب</button>
+    </div>
+    <div class="ip-result" id="ipResult"></div>
+  </div>
+</div>
+
+<!-- PAGE: WORD COUNTER -->
+<div class="page" data-page="word-count">
+  <div class="page-header"><i class="fas fa-font"></i><h2>عداد الكلمات <span class="text-gradient">والحروف</span></h2></div>
+  <div class="page-body container">
+    <div class="wc-wrap">
+      <textarea id="wcInput" placeholder="الصق أو اكتب النص هنا..." rows="10"></textarea>
+      <div class="wc-stats">
+        <div class="wc-stat"><span class="wc-num" id="wcWords">0</span><span class="wc-label">كلمة</span></div>
+        <div class="wc-stat"><span class="wc-num" id="wcChars">0</span><span class="wc-label">حرف (مع المسافات)</span></div>
+        <div class="wc-stat"><span class="wc-num" id="wcCharsNoSpace">0</span><span class="wc-label">حرف (بدون مسافات)</span></div>
+        <div class="wc-stat"><span class="wc-num" id="wcLines">0</span><span class="wc-label">سطر</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: GRADE CALCULATOR -->
+<div class="page" data-page="grade-calc">
+  <div class="page-header"><i class="fas fa-graduation-cap"></i><h2>احتساب <span class="text-gradient">المعدل</span></h2></div>
+  <div class="page-body container">
+    <div class="gc-card">
+      <div class="gc-row"><label>الدرجة الكبرى (القصوى)</label><input type="number" id="gcMax" min="1" value="100" /></div>
+      <div class="gc-row"><label>الدرجة المتحصل عليها</label><input type="number" id="gcScore" min="0" value="0" /></div>
+      <button class="ex-save-btn" id="gcCalcBtn" style="width:auto;padding:10px 32px;display:flex;margin:0 auto;"><i class="fas fa-calculator"></i> احتساب</button>
+      <div class="gc-result" id="gcResult"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: EXAM EDITOR -->
+<div class="page" data-page="exam-editor">
+  <div class="page-header"><i class="fas fa-file-pen"></i><h2>محرر <span class="text-gradient">الامتحانات</span></h2></div>
+  <div class="page-body container">
+    <div class="exam-toolbar" id="examToolbar">
+      <button class="ex-btn" data-cmd="bold" title="غامق"><i class="fas fa-bold"></i></button>
+      <button class="ex-btn" data-cmd="italic" title="مائل"><i class="fas fa-italic"></i></button>
+      <button class="ex-btn" data-cmd="underline" title="تسطير"><i class="fas fa-underline"></i></button>
+      <span class="ex-sep"></span>
+      <button class="ex-btn" data-cmd="justifyRight" title="يمين"><i class="fas fa-align-right"></i></button>
+      <button class="ex-btn" data-cmd="justifyCenter" title="وسط"><i class="fas fa-align-center"></i></button>
+      <button class="ex-btn" data-cmd="justifyLeft" title="يسار"><i class="fas fa-align-left"></i></button>
+      <span class="ex-sep"></span>
+      <button class="ex-btn" data-cmd="insertOrderedList" title="تعداد رقمي"><i class="fas fa-list-ol"></i></button>
+      <button class="ex-btn" data-cmd="insertUnorderedList" title="تعداد نقطي"><i class="fas fa-list-ul"></i></button>
+      <span class="ex-sep"></span>
+      <button class="ex-btn" id="exTableBtn" title="إدراج جدول"><i class="fas fa-table"></i></button>
+      <select class="ex-select" id="exFontSize"><option value="3">عادي</option><option value="4">كبير</option><option value="5">كبير جداً</option><option value="1">صغير</option><option value="2">صغير جداً</option></select>
+      <select class="ex-select" id="exHeading"><option value="">نص عادي</option><option value="h1">عنوان 1</option><option value="h2">عنوان 2</option><option value="h3">عنوان 3</option></select>
+      <span class="ex-sep"></span>
+      <button class="ex-btn" id="exClearBtn" title="مسح الكل"><i class="fas fa-trash"></i></button>
+    </div>
+    <div class="exam-a4-wrap">
+      <div class="exam-a4" id="examA4" contenteditable="true" spellcheck="true"><div style="text-align:center;margin-bottom:20px;"><h2>الامتحان</h2></div><p>اكتب أسئلة الامتحان هنا...</p></div>
+    </div>
+    <div class="exam-actions">
+      <button class="ex-save-btn" id="examSaveBtn"><i class="fas fa-save"></i> حفظ التعديلات</button>
+      <button class="ex-save-btn" id="examWordBtn" style="background:linear-gradient(135deg,#2563eb,#3b82f6);"><i class="fas fa-file-word"></i> تنزيل Word</button>
+      <button class="ex-save-btn" id="examPdfBtn" style="background:linear-gradient(135deg,#dc2626,#ef4444);"><i class="fas fa-file-pdf"></i> تنزيل PDF</button>
+      <button class="ex-save-btn" id="examWhatsBtn" style="background:linear-gradient(135deg,#16a34a,#22c55e);"><i class="fab fa-whatsapp"></i> إرسال واتساب</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: AI CHAT -->
+<div class="page" data-page="ai-chat">
+  <div class="page-header"><i class="fas fa-robot"></i><h2>الذكاء <span class="text-gradient">الاصطناعي</span></h2></div>
+  <div class="page-body container">
+    <p class="ai-intro">اختر المنصة التي تفضلها للدردشة مع الذكاء الاصطناعي مباشرة:</p>
+    <div class="ai-grid">
+      <a href="https://gemini.google.com/" target="_blank" rel="noopener" class="ai-card ai-gemini">
+        <div class="ai-card-icon"><img src="https://www.gstatic.com/lamda/images/gemini_favicon_v1.png" alt="Gemini" /></div>
+        <span class="ai-card-name">Google Gemini</span>
+        <small>نموذج Google المتعدد الوسائط</small>
+      </a>
+      <a href="https://chat.deepseek.com/" target="_blank" rel="noopener" class="ai-card ai-deepseek">
+        <div class="ai-card-icon"><span style="font-size:28px;font-weight:900;color:#4F46E5;">D</span></div>
+        <span class="ai-card-name">DeepSeek</span>
+        <small>نموذج صيني مفتوح وقوي</small>
+      </a>
+      <a href="https://chatgpt.com/" target="_blank" rel="noopener" class="ai-card ai-chatgpt">
+        <div class="ai-card-icon"><span style="font-size:28px;font-weight:900;color:#10a37f;">C</span></div>
+        <span class="ai-card-name">ChatGPT</span>
+        <small>OpenAI – الأكثر شهرة عالمياً</small>
+      </a>
+      <a href="https://copilot.microsoft.com/" target="_blank" rel="noopener" class="ai-card ai-copilot">
+        <div class="ai-card-icon"><span style="font-size:28px;font-weight:900;color:#0078D4;">M</span></div>
+        <span class="ai-card-name">Microsoft Copilot</span>
+        <small>مدعوم بـ GPT-4 من Microsoft</small>
+      </a>
+      <a href="https://claude.ai/" target="_blank" rel="noopener" class="ai-card ai-claude">
+        <div class="ai-card-icon"><span style="font-size:28px;font-weight:900;color:#D97706;">C</span></div>
+        <span class="ai-card-name">Claude</span>
+        <small>Anthropic – آمن ودقيق</small>
+      </a>
+      <a href="https://www.perplexity.ai/" target="_blank" rel="noopener" class="ai-card ai-perplexity">
+        <div class="ai-card-icon"><span style="font-size:28px;font-weight:900;color:#6366F1;">P</span></div>
+        <span class="ai-card-name">Perplexity</span>
+        <small>بحث ذكي مع مصادر</small>
+      </a>
+      <a href="https://www.blackbox.ai/" target="_blank" rel="noopener" class="ai-card ai-blackbox">
+        <div class="ai-card-icon"><span style="font-size:28px;font-weight:900;color:#1E1E1E;">B</span></div>
+        <span class="ai-card-name">Blackbox AI</span>
+        <small>متخصص في البرمجة</small>
+      </a>
+      <a href="https://x.ai/" target="_blank" rel="noopener" class="ai-card ai-grok">
+        <div class="ai-card-icon"><span style="font-size:28px;font-weight:900;color:#1DA1F2;">G</span></div>
+        <span class="ai-card-name">Grok</span>
+        <small>xAI – ذكي ومباشر</small>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: ISLAMIC LIBRARY -->
+<div class="page" data-page="islamic">
+  <div class="page-header"><i class="fas fa-mosque"></i><h2>المكتبة <span class="text-gradient">الإسلامية</span></h2></div>
+  <div class="page-body container">
+    <div class="is-tabs" id="isTabs">
+      <button class="is-tab active" data-is="quran"><i class="fas fa-book-quran"></i> القرآن الكريم</button>
+      <button class="is-tab" data-is="adhkar"><i class="fas fa-hand-praying"></i> الأذكار والأدعية</button>
+      <button class="is-tab" data-is="tawhid"><i class="fas fa-book-open"></i> كتاب التوحيد</button>
+      <button class="is-tab" data-is="aqeedah"><i class="fas fa-star"></i> متون العقيدة</button>
+      <button class="is-tab" data-is="hadith"><i class="fas fa-search"></i> البحث عن حديث</button>
+    </div>
+
+    <!-- QURAN -->
+    <div class="is-pane active" id="isQuran">
+      <div class="quran-top">
+        <select id="quranSurahSelect" class="ex-select" style="flex:1;max-width:300px;padding:10px 14px;font-size:14px;"></select>
+        <button class="ex-save-btn" id="quranGoBtn" style="width:auto;padding:10px 24px;display:flex;"><i class="fas fa-book-open"></i> اقرأ</button>
+      </div>
+      <div class="quran-reading" id="quranReading">
+        <div class="quran-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div class="quran-verses" id="quranVerses"></div>
+      </div>
+    </div>
+
+    <!-- ADHKAR -->
+    <div class="is-pane" id="isAdhkar">
+      <div class="adhkar-tabs" id="adhkarTabs">
+        <button class="adhkar-tab active" data-ad="morning">أذكار الصباح</button>
+        <button class="adhkar-tab" data-ad="evening">أذكار المساء</button>
+        <button class="adhkar-tab" data-ad="prayer">أذكار الصلاة</button>
+        <button class="adhkar-tab" data-ad="sleep">أذكار النوم</button>
+        <button class="adhkar-tab" data-ad="other">متنوعة</button>
+      </div>
+      <div class="adhkar-content" id="adhkarContent"></div>
+    </div>
+
+    <!-- TAWHID -->
+    <div class="is-pane" id="isTawhid">
+      <div class="tawhid-intro">كتاب التوحيد الذي هو حق الله على العبيد — للإمام محمد بن عبد الوهاب رحمه الله</div>
+      <div class="tawhid-chapters" id="tawhidChapters"></div>
+    </div>
+
+    <!-- AQEEDAH TEXTS -->
+    <div class="is-pane" id="isAqeedah">
+      <div class="aqeedah-intro">متون عقدية للإمام محمد بن عبد الوهاب رحمه الله</div>
+      <div class="adhkar-tabs" id="aqeedahTabs">
+        <button class="adhkar-tab active" data-aq="usool">الأصول الثلاثة</button>
+        <button class="adhkar-tab" data-aq="qawaid">القواعد الأربع</button>
+        <button class="adhkar-tab" data-aq="fifty">50 سؤالاً في العقيدة</button>
+      </div>
+      <div class="aqeedah-content" id="aqeedahContent"></div>
+    </div>
+
+    <!-- HADITH -->
+    <div class="is-pane" id="isHadith">
+      <p class="hadith-intro">ابحث في الموسوعة الحديثية (الدرر السنية) عن أي حديث شريف:</p>
+      <div class="hadith-form">
+        <input type="text" id="hadithQuery" placeholder="اكتب كلمة أو جملة للبحث..." />
+        <button class="ex-save-btn" id="hadithSearchBtn" style="width:auto;padding:10px 24px;display:flex;"><i class="fas fa-search"></i> بحث</button>
+      </div>
+      <div class="hadith-result" id="hadithResult"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: PROPHETS STORIES -->
+<div class="page" data-page="prophets">
+  <div class="page-header"><i class="fas fa-pray"></i><h2>قصص <span class="text-gradient">الأنبياء</span></h2></div>
+  <div class="page-body container">
+    <p class="prophets-intro">قصص الأنبياء عليهم السلام — فيها العبر والعظات والدروس المستفادة</p>
+    <div class="ext-links">
+      <a href="https://www.islamstory.com/ar/artical/3407939/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%A7%D9%86%D8%A8%D9%8A%D8%A7%D8%A1" target="_blank" rel="noopener" class="ext-link-btn"><i class="fas fa-book-open"></i> قصص الأنبياء كاملة — إسلام ستوري</a>
+      <a href="https://ar.wikipedia.org/wiki/%D9%82%D8%B5%D8%B5_%D8%A7%D9%84%D8%A3%D9%86%D8%A8%D9%8A%D8%A7%D8%A1_%D9%81%D9%8A_%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85" target="_blank" rel="noopener" class="ext-link-btn"><i class="fas fa-wikipedia-w"></i> قصص الأنبياء — ويكيبيديا</a>
+      <a href="https://dorar.net/hadith" target="_blank" rel="noopener" class="ext-link-btn"><i class="fas fa-search"></i> البحث في الموسوعة الحديثية</a>
+    </div>
+    <div id="prophetsList"></div>
+  </div>
+</div>
+
+<!-- PAGE: 100 GREAT MUSLIMS -->
+<div class="page" data-page="great100">
+  <div class="page-header"><i class="fas fa-star-and-crescent"></i><h2>100 من عظماء <span class="text-gradient">الإسلام</span></h2></div>
+  <div class="page-body container">
+    <p class="prophets-intro">سير ومواقف أبرز عظماء وقادة وقامات الأمة الإسلامية عبر التاريخ</p>
+    <div class="ext-links">
+      <a href="https://www.islamstory.com/ar/section/18/%D8%B3%D9%8A%D8%B1-%D8%A7%D9%84%D8%A3%D8%B9%D9%84%D8%A7%D9%85" target="_blank" rel="noopener" class="ext-link-btn"><i class="fas fa-book-open"></i> سير الأعلام — إسلام ستوري</a>
+      <a href="https://ar.wikipedia.org/wiki/%D8%AA%D8%B5%D9%86%D9%8A%D9%81:%D8%B9%D9%84%D9%85%D8%A7%D8%A1_%D9%85%D8%B3%D9%84%D9%85%D9%88%D9%86" target="_blank" rel="noopener" class="ext-link-btn"><i class="fas fa-wikipedia-w"></i> علماء مسلمون — ويكيبيديا</a>
+    </div>
+    <div id="great100Tabs" class="great-tabs"></div>
+    <div id="great100Content"></div>
+  </div>
+</div>
+
+<!-- PAGE: MAP -->
+<div class="page" data-page="map">
+  <div class="page-header"><i class="fas fa-map-location-dot"></i><h2>خرائط <span class="text-gradient">تفاعلية</span></h2></div>
+  <div class="page-body container">
+    <div class="map-toolbar">
+      <input type="text" id="mapSearch" placeholder="ابحث عن مدينة أو شارع أو معلم..." />
+      <button class="ex-save-btn" id="mapSearchBtn" style="width:auto;padding:10px 20px;display:flex;"><i class="fas fa-search"></i> بحث</button>
+      <button class="ex-save-btn" id="mapLocateBtn" style="width:auto;padding:10px 20px;display:flex;background:linear-gradient(135deg,#2563eb,#3b82f6);"><i class="fas fa-location-crosshairs"></i> موقعي</button>
+      <button class="ex-save-btn" id="mapRouteBtn" style="width:auto;padding:10px 20px;display:flex;background:linear-gradient(135deg,#d97706,#f59e0b);"><i class="fas fa-route"></i> مسار</button>
+    </div>
+    <div id="mapContainer" class="map-container"></div>
+    <div class="map-status" id="mapStatus">انقر على الخريطة لتحديد نقطة، أو استخدم البحث</div>
+  </div>
+</div>
+
+<!-- PAGE: EXPENSE TRACKER -->
+<div class="page" data-page="expense">
+  <div class="page-header"><i class="fas fa-wallet"></i><h2>المحفظة <span class="text-gradient">الذكية</span></h2></div>
+  <div class="page-body container">
+    <div class="exp-summary" id="expSummary">
+      <div class="exp-card exp-balance"><span>الرصيد</span><strong id="expBalance">0</strong></div>
+      <div class="exp-card exp-income"><span>الدخل</span><strong id="expIncome">0</strong></div>
+      <div class="exp-card exp-outcome"><span>المصروفات</span><strong id="expOutcome">0</strong></div>
+    </div>
+    <div class="exp-form">
+      <input type="text" id="expDesc" placeholder="الوصف (مثال: راتب، فاتورة)" />
+      <input type="number" id="expAmount" placeholder="المبلغ" />
+      <select id="expType"><option value="income">دخل</option><option value="expense" selected>مصروف</option></select>
+      <select id="expCategory"><option value="راتب">راتب</option><option value="طعام">طعام</option><option value="مواصلات">مواصلات</option><option value="فواتير">فواتير</option><option value="ترفيه">ترفيه</option><option value="علاج">علاج</option><option value="تعليم">تعليم</option><option value="أخرى">أخرى</option></select>
+      <button class="ex-save-btn" id="expAddBtn" style="width:auto;padding:10px 24px;display:flex;"><i class="fas fa-plus"></i> إضافة</button>
+    </div>
+    <div class="exp-chart-wrap"><canvas id="expChart" height="200"></canvas></div>
+    <div class="exp-list-wrap"><h4 style="margin-bottom:8px;color:var(--text-primary);">جميع المعاملات</h4><div id="expList"></div></div>
+  </div>
+</div>
+
+<!-- PAGE: FOOTBALL -->
+<div class="page" data-page="football">
+  <div class="page-header"><i class="fas fa-futbol"></i><h2>كرة <span class="text-gradient">القدم</span></h2></div>
+  <div class="page-body container">
+    <div class="fb-toolbar">
+      <select id="fbLeague" class="ex-select" style="padding:10px 14px;">
+        <option value="4328">الدوري الإنجليزي</option>
+        <option value="4335">الدوري الإسباني</option>
+        <option value="4331">الدوري الألماني</option>
+        <option value="4332">الدوري الإيطالي</option>
+        <option value="4334">الدوري الفرنسي</option>
+        <option value="4429">🏆 كأس العالم</option>
+        <option value="4502">🏆 أمم أوروبا (يورو)</option>
+        <option value="4480">🏆 دوري أبطال أوروبا</option>
+        <option value="4490">🏆 دوري الأمم الأوروبية</option>
+      </select>
+      <button class="ex-save-btn" id="fbLiveBtn" style="width:auto;padding:10px 20px;display:flex;"><i class="fas fa-clock"></i> المباريات القادمة</button>
+      <button class="ex-save-btn" id="fbLatestBtn" style="width:auto;padding:10px 20px;display:flex;background:linear-gradient(135deg,#2563eb,#3b82f6);"><i class="fas fa-list"></i> آخر النتائج</button>
+    </div>
+    <div class="fb-content" id="fbContent"><p style="text-align:center;color:var(--text-muted);">اختر دورياً وانقر لعرض المباريات</p></div>
+  </div>
+</div>
+
+<!-- PAGE: FITNESS -->
+<div class="page" data-page="fitness">
+  <div class="page-header"><i class="fas fa-dumbbell"></i><h2>أنظمة التدريب <span class="text-gradient">البدني</span></h2></div>
+  <div class="page-body container">
+    <div class="adhkar-tabs" id="fitTabs">
+      <button class="adhkar-tab active" data-fit="power">💪 باورليفتنغ</button>
+      <button class="adhkar-tab" data-fit="body">🏋️ كمال أجسام</button>
+      <button class="adhkar-tab" data-fit="endurance">🔥 القوة والتحمل</button>
+    </div>
+    <div id="fitContent"></div>
+  </div>
+</div>
+
 <footer id="footer" role="contentinfo">
   <div class="footer-bg"></div>
   <div class="container">
@@ -477,10 +1108,15 @@
   <i class="fas fa-arrow-up"></i>
 </button>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@3.2.0/dist/leaflet-routing-machine.js" crossorigin="anonymous"></script>
 <script src="script.js"></script>
 </body>
 </html>
