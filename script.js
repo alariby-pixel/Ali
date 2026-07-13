@@ -1050,6 +1050,29 @@ const SYSTEMS_CONFIG = [
         alert('تم استعادة المنظومات الافتراضية');
       }
     });
+
+    /* Download config button */
+    var dlBtn = document.getElementById('sysDownloadBtn');
+    if (dlBtn) {
+      var newDl = dlBtn.cloneNode(true);
+      dlBtn.parentNode.replaceChild(newDl, dlBtn);
+      newDl.addEventListener('click', downloadConfig);
+    }
+
+    /* Remote config URL */
+    var remoteUrlInput = document.getElementById('sysRemoteUrl');
+    var remoteSaveBtn = document.getElementById('sysRemoteSaveBtn');
+    if (remoteUrlInput && remoteSaveBtn) {
+      remoteUrlInput.value = getRemoteConfigUrl();
+      var newRemoteSave = remoteSaveBtn.cloneNode(true);
+      remoteSaveBtn.parentNode.replaceChild(newRemoteSave, remoteSaveBtn);
+      newRemoteSave.addEventListener('click', function () {
+        var val = remoteUrlInput.value.trim();
+        setRemoteConfigUrl(val);
+        alert('تم حفظ رابط الإعدادات المشتركة');
+        if (val) fetchRemoteConfig();
+      });
+    }
   }
 
   function getCustomSystems() {
@@ -1068,6 +1091,43 @@ const SYSTEMS_CONFIG = [
     all = all.concat(custom);
     window._allSystems = all;
     renderSystemsData(all);
+  }
+
+  /* Remote config sharing */
+  function getRemoteConfigUrl() { return Store.get('remoteConfigUrl', ''); }
+  function setRemoteConfigUrl(url) { Store.set('remoteConfigUrl', url); }
+  function fetchRemoteConfig() {
+    var url = getRemoteConfigUrl();
+    if (!url) return;
+    fetch(url)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !data.systems) return;
+        window._allSystems = data.systems;
+        renderSystemsData(data.systems);
+        var totalEl = document.getElementById('resultsCount');
+        var heroEl = document.getElementById('heroTotal');
+        if (totalEl) totalEl.textContent = data.systems.length;
+        if (heroEl) heroEl.textContent = data.systems.length;
+      })
+      .catch(function () {});
+  }
+  function downloadConfig() {
+    var custom = getCustomSystems();
+    var overrides = getOverrides();
+    var all = SYSTEMS_CONFIG.map(function (s) {
+      var o = overrides[s.id];
+      return o ? { id: s.id, title: o.title, url: o.url, description: s.description, _logo: o._logo || undefined } : s;
+    });
+    all = all.concat(custom);
+    var blob = new Blob([JSON.stringify({ systems: all }, null, 2)], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'systems-config.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
   function renderSystemsData(arr) {
     var grid = document.getElementById('systemsGrid');
@@ -2567,6 +2627,7 @@ const SYSTEMS_CONFIG = [
     initParticles();
     initSearch();
     initSystems();
+    fetchRemoteConfig();
     initProgressBar();
     initBackToTop();
     initThemeToggle();

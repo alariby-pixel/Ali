@@ -661,7 +661,18 @@
         <button id="sysAddBtn"><i class="fas fa-plus"></i> إضافة منظومة</button>
       </div>
       <div class="settings-sys-list" id="settingsSysList"></div>
-      <button id="sysResetBtn" style="margin-top:20px;padding:10px 20px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:var(--radius-md);color:#fff;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:var(--font-sans);"><i class="fas fa-undo"></i> استعادة المنظومات الافتراضية</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;">
+        <button id="sysResetBtn" style="padding:10px 20px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:var(--radius-md);color:#fff;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:var(--font-sans);"><i class="fas fa-undo"></i> استعادة الافتراضية</button>
+        <button id="sysDownloadBtn" style="padding:10px 20px;background:linear-gradient(135deg,#2563eb,#3b82f6);border:none;border-radius:var(--radius-md);color:#fff;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:var(--font-sans);"><i class="fas fa-download"></i> تنزيل الإعدادات (JSON)</button>
+      </div>
+      <div style="margin-top:16px;padding:12px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);">
+        <label style="font-size:13px;color:var(--text-secondary);display:block;margin-bottom:6px;"><i class="fas fa-cloud-upload-alt"></i> رابط الإعدادات المشتركة (لمشاركة التعديلات مع الجميع):</label>
+        <div style="display:flex;gap:8px;">
+          <input type="url" id="sysRemoteUrl" placeholder="https://example.com/systems-config.json" style="flex:1;padding:9px 12px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-sm);color:var(--text-primary);font-size:13px;outline:none;font-family:var(--font-sans);" />
+          <button id="sysRemoteSaveBtn" style="padding:9px 16px;background:linear-gradient(135deg,#16a34a,#22c55e);border:none;border-radius:var(--radius-sm);color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-sans);"><i class="fas fa-save"></i> حفظ</button>
+        </div>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:6px;">ارفع ملف JSON على أي استضافة عامة (GitHub Raw, Dropbox, etc.) ثم ضع الرابط هنا ليظهر للجميع</p>
+      </div>
     </div>
   </div>
 </div>
