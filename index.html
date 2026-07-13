@@ -46,6 +46,9 @@
       <span class="nav-title">المنظومات الإلكترونية</span>
     </div>
     <div class="nav-info" id="navInfo">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="فتح القائمة الجانبية">
+        <i class="fas fa-bars"></i>
+      </button>
       <button class="theme-toggle" id="themeToggle" aria-label="تغيير المظهر">
         <i class="fas fa-moon"></i>
       </button>
@@ -61,6 +64,33 @@
   </div>
 </nav>
 
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <img src="assets/images/1.png" alt="الشعار" class="logo-img" />
+    </div>
+    <span class="sidebar-title">القائمة</span>
+    <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="sidebar-item active" data-page="home"><i class="fas fa-home"></i> الرئيسية</a>
+    <div class="sidebar-divider">الأدوات</div>
+    <a class="sidebar-item" data-page="exchange"><i class="fas fa-money-bill-transfer"></i> الصرف والدولار</a>
+    <a class="sidebar-item" data-page="calculator"><i class="fas fa-calculator"></i> آلة حاسبة</a>
+    <a class="sidebar-item" data-page="weather"><i class="fas fa-cloud-sun"></i> الطقس ومواقيت الصلاة</a>
+    <a class="sidebar-item" data-page="calendar"><i class="fas fa-calendar-alt"></i> التقويم الميلادي والهجري</a>
+    <div class="sidebar-divider">التنظيم</div>
+    <a class="sidebar-item" data-page="notes"><i class="fas fa-tasks"></i> مهام وملاحظات</a>
+    <a class="sidebar-item" data-page="reminders"><i class="fas fa-bell"></i> تذكير بالمواعيد</a>
+    <div class="sidebar-divider">روابط</div>
+    <a class="sidebar-item" data-page="social"><i class="fas fa-share-alt"></i> مواقع التواصل</a>
+  </nav>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- PAGE: HOME -->
+<div class="page active" data-page="home">
 <div class="hero-wrapper">
   <div class="hero-bg">
     <div class="aurora" id="aurora"></div>
@@ -102,8 +132,16 @@
         <div class="stat-item">
           <i class="fas fa-calendar-alt"></i>
           <div class="stat-content">
-            <span class="stat-label">التاريخ</span>
+            <span class="stat-label">التاريخ الميلادي</span>
             <span class="stat-value" id="heroDate">--</span>
+          </div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <i class="fas fa-moon"></i>
+          <div class="stat-content">
+            <span class="stat-label">التاريخ الهجري</span>
+            <span class="stat-value" id="heroHijri">--</span>
           </div>
         </div>
         <div class="stat-divider"></div>
@@ -111,7 +149,7 @@
           <i class="fas fa-th-large"></i>
           <div class="stat-content">
             <span class="stat-label">المنظومات</span>
-            <span class="stat-value" id="heroTotal">8</span>
+            <span class="stat-value" id="heroTotal">9</span>
           </div>
         </div>
         <div class="stat-divider"></div>
@@ -144,7 +182,7 @@
         </button>
       </div>
       <div class="search-stats">
-        <span class="stats-count" id="resultsCount">8</span>
+        <span class="stats-count" id="resultsCount">9</span>
         <span class="stats-label">منظومات متاحة</span>
       </div>
     </div>
@@ -205,97 +243,202 @@
       </div>
     </div>
   </section>
-
-  <!-- TOOLS SECTION -->
-  <section class="tools-section" id="toolsSection">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-badge">أدوات</span>
-        <h2 class="section-title">أدوات <span class="text-gradient">سريعة</span></h2>
-        <div class="section-divider"><span class="divider-icon"><i class="fas fa-tools"></i></span></div>
-      </div>
-      <div class="tools-grid">
-        <div class="tool-card" data-aos="fade-up">
-          <div class="tool-card-header"><i class="fas fa-calculator"></i><h3>آلة حاسبة</h3></div>
-          <div class="tool-card-body">
-            <div class="calc-display" id="calcDisplay">0</div>
-            <div class="calc-buttons">
-              <button class="calc-btn op" data-val="C">C</button>
-              <button class="calc-btn op" data-val="±">±</button>
-              <button class="calc-btn op" data-val="%">%</button>
-              <button class="calc-btn op" data-val="/">÷</button>
-              <button class="calc-btn num" data-val="7">7</button>
-              <button class="calc-btn num" data-val="8">8</button>
-              <button class="calc-btn num" data-val="9">9</button>
-              <button class="calc-btn op" data-val="*">×</button>
-              <button class="calc-btn num" data-val="4">4</button>
-              <button class="calc-btn num" data-val="5">5</button>
-              <button class="calc-btn num" data-val="6">6</button>
-              <button class="calc-btn op" data-val="-">−</button>
-              <button class="calc-btn num" data-val="1">1</button>
-              <button class="calc-btn num" data-val="2">2</button>
-              <button class="calc-btn num" data-val="3">3</button>
-              <button class="calc-btn op" data-val="+">+</button>
-              <button class="calc-btn num zero" data-val="0">0</button>
-              <button class="calc-btn num" data-val=".">.</button>
-              <button class="calc-btn eq" data-val="=">=</button>
-            </div>
-          </div>
-        </div>
-        <div class="tool-card tool-exchange-btn" data-aos="fade-up" data-aos-delay="50" id="openExchangeBtn">
-          <div class="tool-card-header"><i class="fas fa-money-bill-transfer"></i><h3>حاسبة الصرف</h3></div>
-          <div class="tool-card-body">
-            <p>حساب الربح والخسارة من بيع الدولار كاش/صك</p>
-            <div class="tool-action"><i class="fas fa-arrow-left"></i><span>فتح حاسبة الصرف</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
+</div>
 
-<!-- EXCHANGE PANEL OVERLAY -->
-<div class="panel-overlay" id="exchangeOverlay"></div>
-<div class="panel-slide" id="exchangePanel">
-  <div class="panel-slide-header">
-    <h3><i class="fas fa-money-bill-transfer"></i> سوق الصرف</h3>
-    <button class="panel-slide-close" id="exchangePanelClose"><i class="fas fa-times"></i></button>
+<!-- PAGE: EXCHANGE -->
+<div class="page" data-page="exchange">
+  <div class="page-header">
+    <i class="fas fa-money-bill-transfer"></i>
+    <h2>الصرف <span class="text-gradient">والدولار</span></h2>
   </div>
-  <div class="panel-slide-body">
+  <div class="page-body container">
     <div class="ex-section">
-      <h4 class="ex-section-title">إعدادات الأسعار</h4>
+      <h4 class="ex-section-title"><i class="fas fa-gear"></i> إعدادات الأسعار</h4>
       <div class="ex-field">
         <label>سعر الدولار كاش (دينار لكل 1 دولار)</label>
-        <div class="ex-input-wrap"><i class="fas fa-money-bill-1"></i><input type="number" id="exCashRate" step="0.01" placeholder="مثال: 6.20" /></div>
+        <div class="ex-input-wrap"><i class="fas fa-money-bill-1"></i><input type="number" id="exCashRate2" step="0.01" placeholder="مثال: 6.20" /></div>
       </div>
       <div class="ex-field">
         <label>سعر الدولار صك (دينار لكل 1 دولار)</label>
-        <div class="ex-input-wrap"><i class="fas fa-money-check"></i><input type="number" id="exChequeRate" step="0.01" placeholder="مثال: 6.25" /></div>
+        <div class="ex-input-wrap"><i class="fas fa-money-check"></i><input type="number" id="exChequeRate2" step="0.01" placeholder="مثال: 6.25" /></div>
       </div>
-      <button class="ex-save-btn" id="exSaveBtn"><i class="fas fa-save"></i><span>حفظ الأسعار</span></button>
+      <button class="ex-save-btn" id="exSaveBtn2"><i class="fas fa-save"></i><span>حفظ الأسعار</span></button>
     </div>
     <div class="ex-section">
-      <h4 class="ex-section-title">حساب الصرف</h4>
+      <h4 class="ex-section-title"><i class="fas fa-calculator"></i> حساب الصرف</h4>
       <div class="ex-field">
         <label>المبلغ بالدينار الليبي</label>
-        <div class="ex-input-wrap"><i class="fas fa-coins"></i><input type="number" id="exAmount" step="0.01" placeholder="مثال: 5000" /></div>
+        <div class="ex-input-wrap"><i class="fas fa-coins"></i><input type="number" id="exAmount2" step="0.01" placeholder="مثال: 5000" /></div>
       </div>
       <h5 class="ex-subtitle">السيناريو الأول: <span>شراء كاش ← بيع صك</span></h5>
       <div class="ex-scenario">
-        <div class="ex-row"><span>تشتري دولار كاش</span><span class="ex-val" id="exBuyUsd1">--</span></div>
-        <div class="ex-row"><span>تبيع دولار بصك</span><span class="ex-val" id="exSellLyd1">--</span></div>
-        <div class="ex-row profit"><span>الربح</span><span class="ex-val gold" id="exProfit1">--</span></div>
-        <div class="ex-row"><span>نسبة الربح</span><span class="ex-val" id="exPercent1">--</span></div>
+        <div class="ex-row"><span>تشتري دولار كاش</span><span class="ex-val" id="exBuyUsd1_2">--</span></div>
+        <div class="ex-row"><span>تبيع دولار بصك</span><span class="ex-val" id="exSellLyd1_2">--</span></div>
+        <div class="ex-row profit"><span>الربح</span><span class="ex-val gold" id="exProfit1_2">--</span></div>
+        <div class="ex-row"><span>نسبة الربح</span><span class="ex-val" id="exPercent1_2">--</span></div>
       </div>
       <h5 class="ex-subtitle">السيناريو الثاني: <span>شراء صك ← بيع كاش</span></h5>
       <div class="ex-scenario">
-        <div class="ex-row"><span>تشتري دولار صك</span><span class="ex-val" id="exBuyUsd2">--</span></div>
-        <div class="ex-row"><span>تبيع دولار كاش</span><span class="ex-val" id="exSellLyd2">--</span></div>
-        <div class="ex-row profit"><span>الربح</span><span class="ex-val gold" id="exProfit2">--</span></div>
-        <div class="ex-row"><span>نسبة الربح</span><span class="ex-val" id="exPercent2">--</span></div>
+        <div class="ex-row"><span>تشتري دولار صك</span><span class="ex-val" id="exBuyUsd2_2">--</span></div>
+        <div class="ex-row"><span>تبيع دولار كاش</span><span class="ex-val" id="exSellLyd2_2">--</span></div>
+        <div class="ex-row profit"><span>الربح</span><span class="ex-val gold" id="exProfit2_2">--</span></div>
+        <div class="ex-row"><span>نسبة الربح</span><span class="ex-val" id="exPercent2_2">--</span></div>
       </div>
     </div>
     <a href="https://fcms.cbl.gov.ly/" target="_blank" rel="noopener" class="cbl-btn"><i class="fas fa-external-link-alt"></i> بوابة مصرف ليبيا المركزي لحجز الدولار</a>
+  </div>
+</div>
+
+<!-- PAGE: CALCULATOR -->
+<div class="page" data-page="calculator">
+  <div class="page-header">
+    <i class="fas fa-calculator"></i>
+    <h2>آلة <span class="text-gradient">حاسبة</span></h2>
+  </div>
+  <div class="page-body container">
+    <div class="calc-wrapper">
+      <div class="calc-display" id="calcDisplay2">0</div>
+      <div class="calc-buttons">
+        <button class="calc-btn op" data-val="C">C</button>
+        <button class="calc-btn op" data-val="±">±</button>
+        <button class="calc-btn op" data-val="%">%</button>
+        <button class="calc-btn op" data-val="/">÷</button>
+        <button class="calc-btn num" data-val="7">7</button>
+        <button class="calc-btn num" data-val="8">8</button>
+        <button class="calc-btn num" data-val="9">9</button>
+        <button class="calc-btn op" data-val="*">×</button>
+        <button class="calc-btn num" data-val="4">4</button>
+        <button class="calc-btn num" data-val="5">5</button>
+        <button class="calc-btn num" data-val="6">6</button>
+        <button class="calc-btn op" data-val="-">−</button>
+        <button class="calc-btn num" data-val="1">1</button>
+        <button class="calc-btn num" data-val="2">2</button>
+        <button class="calc-btn num" data-val="3">3</button>
+        <button class="calc-btn op" data-val="+">+</button>
+        <button class="calc-btn num zero" data-val="0">0</button>
+        <button class="calc-btn num" data-val=".">.</button>
+        <button class="calc-btn eq" data-val="=">=</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: WEATHER -->
+<div class="page" data-page="weather">
+  <div class="page-header">
+    <i class="fas fa-cloud-sun"></i>
+    <h2>الطقس ومواقيت <span class="text-gradient">الصلاة</span></h2>
+  </div>
+  <div class="page-body container">
+    <div class="daily-grid">
+      <div class="daily-card">
+        <div class="daily-card-header"><i class="fas fa-mosque"></i><h3>مواقيت الصلاة - بنغازي</h3></div>
+        <div class="daily-card-body">
+          <div class="prayer-countdown" id="prayerCountdown2">جاري التحميل...</div>
+          <div class="prayer-list" id="prayerList2"></div>
+        </div>
+      </div>
+      <div class="daily-card">
+        <div class="daily-card-header"><i class="fas fa-cloud-sun"></i><h3>الطقس - بنغازي</h3></div>
+        <div class="daily-card-body">
+          <div class="weather-main">
+            <div class="weather-icon" id="weatherIcon2"><i class="fas fa-sun"></i></div>
+            <div class="weather-temp" id="weatherTemp2">--°C</div>
+            <div class="weather-desc" id="weatherDesc2">--</div>
+          </div>
+          <div class="weather-details">
+            <div class="weather-detail"><span>يشعر كـ</span><span id="weatherFeels2">--</span></div>
+            <div class="weather-detail"><span>الرطوبة</span><span id="weatherHumidity2">--</span></div>
+            <div class="weather-detail"><span>الرياح</span><span id="weatherWind2">--</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE: CALENDAR -->
+<div class="page" data-page="calendar">
+  <div class="page-header">
+    <i class="fas fa-calendar-alt"></i>
+    <h2>التقويم <span class="text-gradient">الميلادي والهجري</span></h2>
+  </div>
+  <div class="page-body container">
+    <div class="cal-nav">
+      <button class="cal-nav-btn" id="calPrev"><i class="fas fa-chevron-right"></i></button>
+      <div class="cal-nav-title" id="calNavTitle">--</div>
+      <button class="cal-nav-btn" id="calNext"><i class="fas fa-chevron-left"></i></button>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+  </div>
+</div>
+
+<!-- PAGE: NOTES -->
+<div class="page" data-page="notes">
+  <div class="page-header">
+    <i class="fas fa-tasks"></i>
+    <h2>مهام <span class="text-gradient">وملاحظات</span></h2>
+  </div>
+  <div class="page-body container">
+    <div class="notes-form">
+      <input type="text" id="noteInput" placeholder="اكتب مهمة أو ملاحظة..." />
+      <button id="noteAddBtn"><i class="fas fa-plus"></i> إضافة</button>
+    </div>
+    <div class="notes-list" id="notesList"></div>
+  </div>
+</div>
+
+<!-- PAGE: REMINDERS -->
+<div class="page" data-page="reminders">
+  <div class="page-header">
+    <i class="fas fa-bell"></i>
+    <h2>تذكير <span class="text-gradient">بالمواعيد</span></h2>
+  </div>
+  <div class="page-body container">
+    <div class="rem-form">
+      <input type="text" id="remTitle" placeholder="عنوان الموعد" />
+      <input type="date" id="remDate" />
+      <input type="time" id="remTime" />
+      <button id="remAddBtn"><i class="fas fa-plus"></i> إضافة تذكير</button>
+    </div>
+    <div class="rem-list" id="remList"></div>
+  </div>
+</div>
+
+<!-- PAGE: SOCIAL -->
+<div class="page" data-page="social">
+  <div class="page-header">
+    <i class="fas fa-share-alt"></i>
+    <h2>مواقع <span class="text-gradient">التواصل</span></h2>
+  </div>
+  <div class="page-body container">
+    <div class="social-grid">
+      <a href="https://www.google.com/" target="_blank" rel="noopener" class="social-card sc-google">
+        <i class="fab fa-google"></i>
+        <span>Google</span>
+      </a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="social-card sc-facebook">
+        <i class="fab fa-facebook-f"></i>
+        <span>فيسبوك</span>
+      </a>
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="social-card sc-youtube">
+        <i class="fab fa-youtube"></i>
+        <span>يوتيوب</span>
+      </a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener" class="social-card sc-tiktok">
+        <i class="fab fa-tiktok"></i>
+        <span>TikTok</span>
+      </a>
+      <a href="https://wa.me/" target="_blank" rel="noopener" class="social-card sc-whatsapp">
+        <i class="fab fa-whatsapp"></i>
+        <span>واتساب</span>
+      </a>
+      <a href="https://t.me/" target="_blank" rel="noopener" class="social-card sc-telegram">
+        <i class="fab fa-telegram-plane"></i>
+        <span>تلقرام</span>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -341,10 +484,6 @@
 
 <button id="backToTop" class="back-to-top" aria-label="العودة إلى الأعلى" title="العودة إلى الأعلى">
   <i class="fas fa-arrow-up"></i>
-</button>
-
-<button class="float-exchange-btn" id="floatExchangeBtn" aria-label="فتح حاسبة الصرف" title="حاسبة الصرف">
-  <i class="fas fa-money-bill-transfer"></i>
 </button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
