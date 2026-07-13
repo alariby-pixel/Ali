@@ -56,19 +56,14 @@ const SYSTEMS_CONFIG = [
     var s = String(now.getSeconds()).padStart(2, '0');
     var timeStr = h + ':' + m + ':' + s + ' ' + ampm;
     var dateStr = DAYS[now.getDay()] + '، ' + now.getDate() + ' ' + MONTHS[now.getMonth()] + ' ' + now.getFullYear();
-    document.getElementById('navClock').textContent = timeStr;
     document.getElementById('heroClock').textContent = timeStr;
     document.getElementById('heroDate').textContent = dateStr;
-    document.getElementById('navDate').textContent = dateStr;
   }
 
   /* ===== NAVBAR ===== */
   function initNavbar() {
     var navbar = document.getElementById('navbar');
-    var toggle = document.getElementById('navToggle');
-    var navInfo = document.getElementById('navInfo');
     window.addEventListener('scroll', function () { navbar.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
-    toggle.addEventListener('click', function () { navInfo.classList.toggle('open'); toggle.setAttribute('aria-expanded', navInfo.classList.contains('open')); });
   }
 
   /* ===== SIDEBAR ===== */
