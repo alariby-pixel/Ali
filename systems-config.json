@@ -1,0 +1,58 @@
+{
+  "systems": [
+    {
+      "id": 1,
+      "title": "منظومة مدرسة الساحل المالية",
+      "url": "https://script.google.com/macros/s/AKfycbwm3VszZws7SK7jZgUqak2QVRo8XvLADibqenrRNxj0HrwZFplbVN5VHu3OW0GSltJnlQ/exec",
+      "description": "إدارة الرسوم الدراسية والحسابات والتقارير المالية."
+    },
+    {
+      "id": 2,
+      "title": "منظومة الشؤون الفنية والهندسية",
+      "url": "https://script.google.com/macros/s/AKfycbyrmkoXwQfTw2vA4Db6S5ZYiB7VMKCaP6GGtmG6a0NySsaIdkHhhjb9KBEgfpedty4X/exec",
+      "description": "إدارة أعمال الصيانة والأصول والمشروعات الفنية والهندسية."
+    },
+    {
+      "id": 3,
+      "title": "منظومة وزارة التربية والتعليم",
+      "url": "https://nec.gov.ly/SRS/UserLogin.aspx?value=login",
+      "description": "الوصول إلى الخدمات الإلكترونية الخاصة بوزارة التربية والتعليم."
+    },
+    {
+      "id": 4,
+      "title": "منظومة شؤون الطلبة والامتحانات",
+      "url": "https://edu-libya.com/student/admin/login",
+      "description": "إدارة بيانات الطلبة والنتائج والامتحانات."
+    },
+    {
+      "id": 5,
+      "title": "منظومة احتساب نتيجة الشهادتين",
+      "url": "https://alariby-pixel.github.io/alsahal/",
+      "description": "حاسبة احترافية لحساب النتائج."
+    },
+    {
+      "id": 6,
+      "title": "منصة الضرائب",
+      "url": "https://ly.tax/",
+      "description": "الخدمات الإلكترونية لمصلحة الضرائب."
+    },
+    {
+      "id": 7,
+      "title": "بوابة إعداد الموازنة العامة",
+      "url": "https://budget.mopaf.info/login",
+      "description": "منظومة إعداد الموازنة العامة."
+    },
+    {
+      "id": 8,
+      "title": "مركز المناهج والمقررات الدراسية",
+      "url": "https://t.me/Manahej2026",
+      "description": "الوصول إلى المناهج والمقررات الدراسية."
+    },
+    {
+      "id": 9,
+      "title": "بوابة إعلان نتيجة الشهادة الإعدادية والثانوية",
+      "url": "https://finalresults.nec.gov.ly/",
+      "description": "الاستعلام عن نتائج الشهادتين الإعدادية والثانوية."
+    }
+  ]
+}
