@@ -1,13 +1,14 @@
 const SYSTEMS_CONFIG = [
-  { id: 1, title: 'منظومة مدرسة الساحل المالية', url: 'https://script.google.com/macros/s/AKfycbwm3VszZws7SK7jZgUqak2QVRo8XvLADibqenrRNxj0HrwZFplbVN5VHu3OW0GSltJnlQ/exec', description: 'إدارة الرسوم الدراسية والحسابات والتقارير المالية.' },
-  { id: 2, title: 'منظومة الشؤون الفنية والهندسية', url: 'https://script.google.com/macros/s/AKfycbwMDEh4_o5WPMR4udAsKrOKl7tc2a0tLSz6n1jwuvvx059jjvdLcJp3Je_fTgd8soHb/exec', description: 'إدارة أعمال الصيانة والأصول والمشروعات الفنية والهندسية.' },
+  { id: 1, title: 'منظومة مدرسة الساحل المالية', url: 'https://script.google.com/macros/s/AKfycby-oOnN521zeRAJebAV1PvgWLLFFAMrkHa1wEHaAple9jqZZhxHGPSozLzZvdVlfR3xMg/exec', description: 'إدارة الرسوم الدراسية والحسابات والتقارير المالية.' },
+  { id: 2, title: 'منظومة الشؤون الفنية والهندسية', url: 'https://script.google.com/macros/s/AKfycby-qbBb24mMxUaW1uLSxTODgnX_98UueEgEhj1OXUOMnv9QCA6m3N5-1uvbsKmlvlJN/exec', description: 'إدارة أعمال الصيانة والأصول والمشروعات الفنية والهندسية.' },
   { id: 3, title: 'منظومة وزارة التربية والتعليم', url: 'https://nec.gov.ly/SRS/UserLogin.aspx?value=login', description: 'الوصول إلى الخدمات الإلكترونية الخاصة بوزارة التربية والتعليم.' },
   { id: 4, title: 'منظومة شؤون الطلبة والامتحانات', url: 'https://edu-libya.com/student/admin/login', description: 'إدارة بيانات الطلبة والنتائج والامتحانات.' },
-  { id: 5, title: 'منظومة احتساب نتيجة الشهادتين', url: 'https://alariby-pixel.github.io/alsahal/', description: 'حاسبة احترافية لحساب النتائج.' },
-  { id: 6, title: 'منصة الضرائب', url: 'https://ly.tax/', description: 'الخدمات الإلكترونية لمصلحة الضرائب.' },
+  { id: 6, title: 'منظومة بيانات التعليم', url: 'https://sis.moe.gov.ly/Account/Login', description: 'مقدمة من مركز المعلومات والتوثيق.', _logo: 'assets/images/10.png' },
   { id: 7, title: 'بوابة إعداد الموازنة العامة', url: 'https://budget.mopaf.info/login', description: 'منظومة إعداد الموازنة العامة.' },
   { id: 8, title: 'مركز المناهج والمقررات الدراسية', url: 'https://t.me/Manahej2026', description: 'الوصول إلى المناهج والمقررات الدراسية.' },
-  { id: 9, title: 'بوابة إعلان نتيجة الشهادة الإعدادية والثانوية', url: 'https://finalresults.nec.gov.ly/', description: 'الاستعلام عن نتائج الشهادتين الإعدادية والثانوية.' }
+  { id: 10, title: 'منصة الضرائب', url: 'https://ly.tax/', description: 'الخدمات الإلكترونية لمصلحة الضرائب.', _logo: 'assets/images/6.png' },
+  { id: 9, title: 'منظومة احتساب نتيجة الشهادتين', url: 'https://alariby-pixel.github.io/alsahal/', description: 'حاسبة احترافية لحساب النتائج.' },
+  { id: 5, title: 'بوابة إعلان نتيجة الشهادة الإعدادية والثانوية', url: 'https://finalresults.nec.gov.ly/', description: 'الاستعلام عن نتائج الشهادتين الإعدادية والثانوية.' }
 ];
 
 (function () {
@@ -1058,9 +1059,44 @@ const SYSTEMS_CONFIG = [
       dlBtn.parentNode.replaceChild(newDl, dlBtn);
       newDl.addEventListener('click', function () {
         downloadServerConfig();
-        alert('تم تحميل ملف systems-config.json\nارفع هذا الملف إلى مجلد الموقع على الاستضافة ليظهر للجميع.');
       });
     }
+
+    /* Copy config button */
+    var copyBtn = document.getElementById('sysCopyBtn');
+    if (copyBtn) {
+      var newCopy = copyBtn.cloneNode(true);
+      copyBtn.parentNode.replaceChild(newCopy, copyBtn);
+      newCopy.addEventListener('click', function () {
+        var ta = document.getElementById('sysConfigText');
+        if (!ta.value) { alert('لا توجد بيانات للنسخ'); return; }
+        ta.select();
+        try { document.execCommand('copy'); alert('تم النسخ!'); } catch (e) { alert('تعذر النسخ، حدد النص يدوياً'); }
+      });
+    }
+
+    /* JSONBin auto-sync buttons */
+    var jsonBinIdEl = document.getElementById('sysJsonBinId');
+    var jsonKeyEl = document.getElementById('sysJsonKey');
+    var jsonSaveBtn = document.getElementById('sysJsonSaveBtn');
+    var savedCfg = getJsonBinConfig();
+    if (jsonBinIdEl && savedCfg.binId) jsonBinIdEl.value = savedCfg.binId;
+    if (jsonKeyEl && savedCfg.masterKey) jsonKeyEl.value = savedCfg.masterKey;
+    if (jsonSaveBtn) {
+      var newJsonSave = jsonSaveBtn.cloneNode(true);
+      jsonSaveBtn.parentNode.replaceChild(newJsonSave, jsonSaveBtn);
+      newJsonSave.addEventListener('click', function () {
+        var binId = jsonBinIdEl.value.trim();
+        var key = jsonKeyEl.value.trim();
+        if (!binId) { alert('الرجاء إدخال معرف JSONBin'); return; }
+        saveJsonBinConfig(binId, key);
+        syncToJsonBin();
+        alert('تم حفظ إعدادات JSONBin والتزامن مع السحابة ✓');
+      });
+    }
+
+    /* Update config textarea after any change */
+    updateConfigTextarea();
   }
 
   function getCustomSystems() {
@@ -1069,7 +1105,80 @@ const SYSTEMS_CONFIG = [
   function saveCustomSystems(arr) {
     Store.set('customSystems', arr);
   }
+
+  /* ===== JSONBin Auto-Sync ===== */
+  function getJsonBinConfig() {
+    return { binId: Store.get('jsonbin_id', ''), masterKey: Store.get('jsonbin_key', '') };
+  }
+  function saveJsonBinConfig(binId, masterKey) {
+    Store.set('jsonbin_id', binId);
+    Store.set('jsonbin_key', masterKey);
+  }
+  async function fetchJsonBinConfig() {
+    var cfg = getJsonBinConfig();
+    if (!cfg.binId) return null;
+    try {
+      var headers = {};
+      if (cfg.masterKey) headers['X-Master-Key'] = cfg.masterKey;
+      var res = await fetch('https://api.jsonbin.io/v3/b/' + cfg.binId + '/latest', { headers: headers });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      return data.record || data;
+    } catch (e) { return null; }
+  }
+  async function pushJsonBinConfig(configObj) {
+    var cfg = getJsonBinConfig();
+    if (!cfg.binId || !cfg.masterKey) return false;
+    try {
+      var res = await fetch('https://api.jsonbin.io/v3/b/' + cfg.binId, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'X-Master-Key': cfg.masterKey },
+        body: JSON.stringify(configObj)
+      });
+      return res.ok;
+    } catch (e) { return false; }
+  }
+  function buildFullConfig() {
+    var overrides = getOverrides();
+    var custom = getCustomSystems();
+    var all = SYSTEMS_CONFIG.map(function (s) {
+      var o = overrides[s.id];
+      return o ? { id: s.id, title: o.title, url: o.url, description: s.description, _logo: o._logo || undefined } : s;
+    });
+    all = all.concat(custom);
+    return all;
+  }
+  function syncToJsonBin() {
+    var cfg = getJsonBinConfig();
+    if (!cfg.binId || !cfg.masterKey) return;
+    pushJsonBinConfig({ systems: buildFullConfig() });
+  }
   function initSystems() {
+    var cfg = getJsonBinConfig();
+    if (cfg.binId) {
+      fetchJsonBinConfig().then(function (data) {
+        if (data && data.systems && data.systems.length > 0) {
+          var overrides = getOverrides();
+          var custom = getCustomSystems();
+          var merged = data.systems.map(function (s) {
+            var o = overrides[typeof s.id === 'number' ? s.id : ''];
+            return o ? { id: s.id, title: o.title, url: o.url, description: s.description, _logo: o._logo || undefined } : s;
+          });
+          custom.forEach(function (c) {
+            if (!merged.some(function (m) { return m.id === c.id; })) merged.push(c);
+          });
+          window._allSystems = merged;
+          renderSystemsData(merged);
+          updateCounts(merged.length);
+          return;
+        }
+        loadLocalSystems();
+      }).catch(function () { loadLocalSystems(); });
+    } else {
+      loadLocalSystems();
+    }
+  }
+  function loadLocalSystems() {
     var custom = getCustomSystems();
     var overrides = getOverrides();
     var all = SYSTEMS_CONFIG.map(function (s) {
@@ -1079,52 +1188,16 @@ const SYSTEMS_CONFIG = [
     all = all.concat(custom);
     window._allSystems = all;
     renderSystemsData(all);
+    updateCounts(all.length);
   }
-
-  /* Shared config via server JSON file */
-  function fetchServerConfig() {
-    fetch('systems-config.json?' + Date.now())
-      .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
-      .then(function (data) {
-        if (data && data.systems && data.systems.length > 0) {
-          /* Merge server config with localStorage overrides */
-          var overrides = getOverrides();
-          var custom = getCustomSystems();
-          var merged = data.systems.map(function (s) {
-            if (typeof s.id === 'number' && s.id <= SYSTEMS_CONFIG.length) {
-              var o = overrides[s.id];
-              return o ? { id: s.id, title: o.title, url: o.url, description: s.description, _logo: o._logo || undefined } : s;
-            }
-            return s;
-          });
-          custom.forEach(function (c) {
-            if (!merged.some(function (m) { return m.id === c.id; })) merged.push(c);
-          });
-          if (overrides && Object.keys(overrides).length > 0) {
-            merged = merged.map(function (s) {
-              var o = overrides[typeof s.id === 'number' ? s.id : ''];
-              return o ? { id: s.id, title: o.title, url: o.url, description: s.description, _logo: o._logo || undefined } : s;
-            });
-          }
-          window._allSystems = merged;
-          renderSystemsData(merged);
-          var totalEl = document.getElementById('resultsCount');
-          var heroEl = document.getElementById('heroTotal');
-          if (totalEl) totalEl.textContent = merged.length;
-          if (heroEl) heroEl.textContent = merged.length;
-        }
-      })
-      .catch(function () {});
+  function updateCounts(n) {
+    var totalEl = document.getElementById('resultsCount');
+    var heroEl = document.getElementById('heroTotal');
+    if (totalEl) totalEl.textContent = n;
+    if (heroEl) heroEl.textContent = n;
   }
   function downloadServerConfig() {
-    var custom = getCustomSystems();
-    var overrides = getOverrides();
-    var all = SYSTEMS_CONFIG.map(function (s) {
-      var o = overrides[s.id];
-      return o ? { id: s.id, title: o.title, url: o.url, description: s.description, _logo: o._logo || undefined } : s;
-    });
-    all = all.concat(custom);
-    var blob = new Blob([JSON.stringify({ systems: all }, null, 2)], { type: 'application/json' });
+    var blob = new Blob([JSON.stringify({ systems: buildFullConfig() }, null, 2)], { type: 'application/json' });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = 'systems-config.json';
@@ -1132,6 +1205,11 @@ const SYSTEMS_CONFIG = [
     a.click();
     document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
+  function updateConfigTextarea() {
+    var ta = document.getElementById('sysConfigText');
+    if (!ta) return;
+    ta.value = JSON.stringify({ systems: buildFullConfig() }, null, 2);
   }
   function renderSystemsData(arr) {
     var grid = document.getElementById('systemsGrid');
@@ -1162,6 +1240,7 @@ const SYSTEMS_CONFIG = [
     } else {
       initSystems();
     }
+    syncToJsonBin();
   }
   function filterSystems(q) {
     var all = window._allSystems || SYSTEMS_CONFIG;
@@ -2631,7 +2710,6 @@ const SYSTEMS_CONFIG = [
     initParticles();
     initSearch();
     initSystems();
-    fetchServerConfig();
     initProgressBar();
     initBackToTop();
     initThemeToggle();

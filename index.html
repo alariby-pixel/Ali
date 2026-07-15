@@ -663,16 +663,27 @@
       <div class="settings-sys-list" id="settingsSysList"></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;">
         <button id="sysResetBtn" style="padding:10px 20px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:var(--radius-md);color:#fff;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:var(--font-sans);"><i class="fas fa-undo"></i> استعادة الافتراضية</button>
-        <button id="sysDownloadBtn" style="padding:10px 20px;background:linear-gradient(135deg,#2563eb,#3b82f6);border:none;border-radius:var(--radius-md);color:#fff;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:var(--font-sans);"><i class="fas fa-download"></i> تحميل ملف الإعدادات المشتركة</button>
       </div>
       <div style="margin-top:16px;padding:12px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);">
-        <p style="font-size:13px;color:var(--text-secondary);margin:0;"><i class="fas fa-info-circle" style="color:#3b82f6;"></i> <strong style="color:var(--text-primary);">لمشاركة التعديلات مع جميع الزوار:</strong></p>
-        <ol style="margin:8px 0 0;padding-right:20px;font-size:12px;color:var(--text-muted);line-height:1.8;">
-          <li>عدّل المنظومات (اسم، رابط، شعار) من القائمة أعلاه</li>
-          <li>اضغط <strong style="color:#3b82f6;">"تحميل ملف الإعدادات المشتركة"</strong></li>
-          <li>ارفع الملف <code style="background:rgba(0,0,0,0.3);padding:1px 6px;border-radius:4px;">systems-config.json</code> إلى مجلد الموقع على الاستضافة</li>
-          <li>الجميع سيشاهدون التعديلات تلقائياً</li>
-        </ol>
+        <p style="font-size:13px;color:var(--text-secondary);margin:0 0 8px;"><i class="fas fa-cloud-upload-alt" style="color:#22c55e;"></i> <strong style="color:var(--text-primary);">تزامن تلقائي مع جميع الزوار (JSONBin):</strong></p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <input type="text" id="sysJsonBinId" placeholder="معرف JSONBin (bin ID)" style="flex:2;min-width:120px;padding:9px 12px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-sm);color:var(--text-primary);font-size:13px;outline:none;font-family:var(--font-sans);direction:ltr;" />
+          <input type="password" id="sysJsonKey" placeholder="المفتاح (X-Master-Key)" style="flex:2;min-width:120px;padding:9px 12px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-sm);color:var(--text-primary);font-size:13px;outline:none;font-family:var(--font-sans);direction:ltr;" />
+          <button id="sysJsonSaveBtn" style="padding:9px 16px;background:linear-gradient(135deg,#16a34a,#22c55e);border:none;border-radius:var(--radius-sm);color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-sans);"><i class="fas fa-save"></i> حفظ الإعدادات</button>
+        </div>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:6px;">
+          <i class="fas fa-info-circle"></i>
+          بعد الحفظ، أي تعديل للمنظومات سيتم تلقائياً — جميع الزوار سيرون التحديث فوراً.
+          <a href="https://jsonbin.io/" target="_blank" rel="noopener" style="color:#3b82f6;">أنشئ حساب مجاني في JSONBin</a> ← أنشئ Bin جديد ← الصق المحتوى من المربع أدناه ← ضع الـ Bin ID والمفتاح هنا.
+        </p>
+      </div>
+      <div style="margin-top:12px;padding:12px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-md);">
+        <p style="font-size:13px;color:var(--text-secondary);margin:0 0 6px;"><i class="fas fa-code"></i> <strong style="color:var(--text-primary);">محتوى ملف الإعدادات:</strong></p>
+        <textarea id="sysConfigText" readonly style="width:100%;height:140px;padding:10px;background:#0f0f1a;border:1px solid var(--glass-border);border-radius:var(--radius-sm);color:#94a3b8;font-size:11px;font-family:monospace;direction:ltr;text-align:left;resize:vertical;outline:none;" placeholder="..."></textarea>
+        <div style="display:flex;gap:6px;margin-top:6px;">
+          <button id="sysCopyBtn" style="padding:6px 14px;background:var(--glass-hover);border:1px solid var(--glass-border);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:12px;cursor:pointer;font-family:var(--font-sans);"><i class="fas fa-copy"></i> نسخ</button>
+          <button id="sysDownloadBtn" style="padding:6px 14px;background:var(--glass-hover);border:1px solid var(--glass-border);border-radius:var(--radius-sm);color:var(--text-secondary);font-size:12px;cursor:pointer;font-family:var(--font-sans);"><i class="fas fa-download"></i> تنزيل</button>
+        </div>
       </div>
     </div>
   </div>
