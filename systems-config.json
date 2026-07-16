@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "منظومة مدرسة الساحل المالية",
-      "url": "https://script.google.com/macros/s/AKfycbwm3VszZws7SK7jZgUqak2QVRo8XvLADibqenrRNxj0HrwZFplbVN5VHu3OW0GSltJnlQ/exec",
+      "url": "https://script.google.com/macros/s/AKfycbyCW94M794RT8TW_bQEhEiWp0cxWRFJPaGt_IOMM2Fegq65ZHANLRK-aDM34LJ9NxA9aA/exec",
       "description": "إدارة الرسوم الدراسية والحسابات والتقارير المالية."
     },
     {
@@ -25,16 +25,11 @@
       "description": "إدارة بيانات الطلبة والنتائج والامتحانات."
     },
     {
-      "id": 5,
-      "title": "منظومة احتساب نتيجة الشهادتين",
-      "url": "https://alariby-pixel.github.io/alsahal/",
-      "description": "حاسبة احترافية لحساب النتائج."
-    },
-    {
       "id": 6,
-      "title": "منصة الضرائب",
-      "url": "https://ly.tax/",
-      "description": "الخدمات الإلكترونية لمصلحة الضرائب."
+      "title": "منظومة بيانات التعليم",
+      "url": "https://sis.moe.gov.ly/Account/Login",
+      "description": "مقدمة من مركز المعلومات والتوثيق.",
+      "_logo": "assets/images/10.png"
     },
     {
       "id": 7,
@@ -49,7 +44,20 @@
       "description": "الوصول إلى المناهج والمقررات الدراسية."
     },
     {
+      "id": 10,
+      "title": "منصة الضرائب",
+      "url": "https://ly.tax/",
+      "description": "الخدمات الإلكترونية لمصلحة الضرائب.",
+      "_logo": "assets/images/6.png"
+    },
+    {
       "id": 9,
+      "title": "منظومة احتساب نتيجة الشهادتين",
+      "url": "https://alariby-pixel.github.io/alsahal/",
+      "description": "حاسبة احترافية لحساب النتائج."
+    },
+    {
+      "id": 5,
       "title": "بوابة إعلان نتيجة الشهادة الإعدادية والثانوية",
       "url": "https://finalresults.nec.gov.ly/",
       "description": "الاستعلام عن نتائج الشهادتين الإعدادية والثانوية."
