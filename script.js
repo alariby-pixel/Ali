@@ -1,5 +1,5 @@
 const SYSTEMS_CONFIG = [
-  { id: 1, title: 'منظومة مدرسة الساحل المالية', url: 'https://script.google.com/macros/s/AKfycby-oOnN521zeRAJebAV1PvgWLLFFAMrkHa1wEHaAple9jqZZhxHGPSozLzZvdVlfR3xMg/exec', description: 'إدارة الرسوم الدراسية والحسابات والتقارير المالية.' },
+  { id: 1, title: 'منظومة مدرسة الساحل المالية', url: 'https://script.google.com/macros/s/AKfycby2I5nXRiEn5P38DJjCjABRbxm7I1IHFX8SyOUM7Xb5TKi2q-90nUfNcgbFyswANyZAxw/exec', description: 'إدارة الرسوم الدراسية والحسابات والتقارير المالية.' },
   { id: 2, title: 'منظومة الشؤون الفنية والهندسية', url: 'https://script.google.com/macros/s/AKfycby-qbBb24mMxUaW1uLSxTODgnX_98UueEgEhj1OXUOMnv9QCA6m3N5-1uvbsKmlvlJN/exec', description: 'إدارة أعمال الصيانة والأصول والمشروعات الفنية والهندسية.' },
   { id: 3, title: 'منظومة وزارة التربية والتعليم', url: 'https://nec.gov.ly/SRS/UserLogin.aspx?value=login', description: 'الوصول إلى الخدمات الإلكترونية الخاصة بوزارة التربية والتعليم.' },
   { id: 4, title: 'منظومة شؤون الطلبة والامتحانات', url: 'https://edu-libya.com/student/admin/login', description: 'إدارة بيانات الطلبة والنتائج والامتحانات.' },
@@ -7,8 +7,9 @@ const SYSTEMS_CONFIG = [
   { id: 7, title: 'بوابة إعداد الموازنة العامة', url: 'https://budget.mopaf.info/login', description: 'منظومة إعداد الموازنة العامة.' },
   { id: 8, title: 'مركز المناهج والمقررات الدراسية', url: 'https://t.me/Manahej2026', description: 'الوصول إلى المناهج والمقررات الدراسية.' },
   { id: 10, title: 'منصة الضرائب', url: 'https://ly.tax/', description: 'الخدمات الإلكترونية لمصلحة الضرائب.', _logo: 'assets/images/6.png' },
-  { id: 9, title: 'منظومة احتساب نتيجة الشهادتين', url: 'https://alariby-pixel.github.io/alsahal/', description: 'حاسبة احترافية لحساب النتائج.' },
-  { id: 5, title: 'بوابة إعلان نتيجة الشهادة الإعدادية والثانوية', url: 'https://finalresults.nec.gov.ly/', description: 'الاستعلام عن نتائج الشهادتين الإعدادية والثانوية.' }
+  { id: 9, title: 'منظومة احتساب نتيجة الشهادتين', url: 'https://alariby-pixel.github.io/alsahal/', description: 'حاسبة احترافية لحساب النتائج.', _logo: 'assets/images/1.png' },
+  { id: 5, title: 'بوابة إعلان نتيجة الشهادة الإعدادية والثانوية', url: 'https://finalresults.nec.gov.ly/', description: 'الاستعلام عن نتائج الشهادتين الإعدادية والثانوية.', _logo: 'assets/images/3.png' },
+  { id: 11, title: 'منصة حجز العملة الأجنبية', url: 'https://fcms.cbl.gov.ly/', description: 'التابعة لمصرف ليبيا المركزي.', _logo: 'assets/images/11.png' }
 ];
 
 (function () {
