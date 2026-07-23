@@ -1,5 +1,5 @@
 const SYSTEMS_CONFIG = [
-  { id: 1, title: 'منظومة مدرسة الساحل المالية', url: 'https://script.google.com/macros/s/AKfycbyW_8kg6Z7a1yj6bbcTmQ6m3G4Xic7Owlu6kAuGM3VsdzgLyv1FBMxfb-sWNyv9jXn1Ug/exec', description: 'إدارة الرسوم الدراسية والحسابات والتقارير المالية.' },
+  { id: 1, title: 'منظومة مدرسة الساحل المالية', url: 'https://script.google.com/macros/s/AKfycbxjaT-na9lACL6DUqD-bHVGKfdgyz34PZttyc_fK_6UgOY8nixbY5ztvVDcfAQnDQqEpQ/exec', description: 'إدارة الرسوم الدراسية والحسابات والتقارير المالية.' },
   { id: 2, title: 'منظومة الشؤون الفنية والهندسية', url: 'https://script.google.com/macros/s/AKfycby-qbBb24mMxUaW1uLSxTODgnX_98UueEgEhj1OXUOMnv9QCA6m3N5-1uvbsKmlvlJN/exec', description: 'إدارة أعمال الصيانة والأصول والمشروعات الفنية والهندسية.' },
   { id: 3, title: 'منظومة وزارة التربية والتعليم', url: 'https://nec.gov.ly/SRS/UserLogin.aspx?value=login', description: 'الوصول إلى الخدمات الإلكترونية الخاصة بوزارة التربية والتعليم.' },
   { id: 4, title: 'منظومة شؤون الطلبة والامتحانات', url: 'https://edu-libya.com/student/admin/login', description: 'إدارة بيانات الطلبة والنتائج والامتحانات.' },
@@ -9,7 +9,8 @@ const SYSTEMS_CONFIG = [
   { id: 10, title: 'منصة الضرائب', url: 'https://ly.tax/', description: 'الخدمات الإلكترونية لمصلحة الضرائب.', _logo: 'assets/images/6.png' },
   { id: 9, title: 'منظومة احتساب نتيجة الشهادتين', url: 'https://alariby-pixel.github.io/alsahal/', description: 'حاسبة احترافية لحساب النتائج.', _logo: 'assets/images/1.png' },
   { id: 5, title: 'بوابة إعلان نتيجة الشهادة الإعدادية والثانوية', url: 'https://finalresults.nec.gov.ly/', description: 'الاستعلام عن نتائج الشهادتين الإعدادية والثانوية.', _logo: 'assets/images/3.png' },
-  { id: 11, title: 'منصة حجز العملة الأجنبية', url: 'https://fcms.cbl.gov.ly/', description: 'التابعة لمصرف ليبيا المركزي.', _logo: 'assets/images/11.png' }
+  { id: 11, title: 'منصة حجز العملة الأجنبية', url: 'https://fcms.cbl.gov.ly/', description: 'التابعة لمصرف ليبيا المركزي.', _logo: 'assets/images/11.png' },
+  { id: 12, title: 'منظومة جمعية العقورية39', url: 'https://script.google.com/macros/s/AKfycbwi8kUyCQktR8uois5j_dxhJXh1htQtZQfEBKBUFx_acWycvztFcINDyba9h2M_a_4X/exec', description: 'منظومة جمعية العقورية39.', _logo: 'assets/images/12.png' }
 ];
 
 (function () {
