@@ -10,7 +10,7 @@ const SYSTEMS_CONFIG = [
   { id: 9, title: 'منظومة احتساب نتيجة الشهادتين', url: 'https://alariby-pixel.github.io/alsahal/', description: 'حاسبة احترافية لحساب النتائج.', _logo: 'assets/images/1.png' },
   { id: 5, title: 'بوابة إعلان نتيجة الشهادة الإعدادية والثانوية', url: 'https://finalresults.nec.gov.ly/', description: 'الاستعلام عن نتائج الشهادتين الإعدادية والثانوية.', _logo: 'assets/images/3.png' },
   { id: 11, title: 'منصة حجز العملة الأجنبية', url: 'https://fcms.cbl.gov.ly/', description: 'التابعة لمصرف ليبيا المركزي.', _logo: 'assets/images/11.png' },
-  { id: 12, title: 'منظومة جمعية العقورية39', url: 'https://script.google.com/macros/s/AKfycbwi8kUyCQktR8uois5j_dxhJXh1htQtZQfEBKBUFx_acWycvztFcINDyba9h2M_a_4X/exec', description: 'منظومة جمعية العقورية39.', _logo: 'assets/images/12.png' }
+  { id: 12, title: 'منظومة جمعية العقورية39', url: 'https://script.google.com/macros/s/AKfycbx7jHOWfpz-7bVdP1in4V1kEu2HfYnbQyh62IIMUVJdoRhCSSZ7lRZFKXGLm98Ogg5_sw/exec', description: 'منظومة جمعية العقورية39.', _logo: 'assets/images/12.png' }
 ];
 
 (function () {
