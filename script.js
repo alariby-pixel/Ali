@@ -1,5 +1,5 @@
 const SYSTEMS_CONFIG = [
-  { id: 1, title: 'منظومة مدرسة الساحل المالية', url: 'https://script.google.com/macros/s/AKfycbxjaT-na9lACL6DUqD-bHVGKfdgyz34PZttyc_fK_6UgOY8nixbY5ztvVDcfAQnDQqEpQ/exec', description: 'إدارة الرسوم الدراسية والحسابات والتقارير المالية.' },
+  { id: 1, title: 'منظومة مدرسة الساحل المالية', url: 'https://script.google.com/macros/s/AKfycbwWplrMh-ROoSEBTesDLUD1YnJ7h_pLhpB18TIKuzuZ0CbeF1W5mwNah9vOMjiQPgD2Lw/exec', description: 'إدارة الرسوم الدراسية والحسابات والتقارير المالية.' },
   { id: 2, title: 'منظومة الشؤون الفنية والهندسية', url: 'https://script.google.com/macros/s/AKfycby-qbBb24mMxUaW1uLSxTODgnX_98UueEgEhj1OXUOMnv9QCA6m3N5-1uvbsKmlvlJN/exec', description: 'إدارة أعمال الصيانة والأصول والمشروعات الفنية والهندسية.' },
   { id: 3, title: 'منظومة وزارة التربية والتعليم', url: 'https://nec.gov.ly/SRS/UserLogin.aspx?value=login', description: 'الوصول إلى الخدمات الإلكترونية الخاصة بوزارة التربية والتعليم.' },
   { id: 4, title: 'منظومة شؤون الطلبة والامتحانات', url: 'https://edu-libya.com/student/admin/login', description: 'إدارة بيانات الطلبة والنتائج والامتحانات.' },
