@@ -7,7 +7,7 @@ const SYSTEMS_CONFIG = [
   { id: 7, title: 'بوابة إعداد الموازنة العامة', url: 'https://budget.mopaf.info/login', description: 'منظومة إعداد الموازنة العامة.' },
   { id: 8, title: 'مركز المناهج والمقررات الدراسية', url: 'https://t.me/Manahej2026', description: 'الوصول إلى المناهج والمقررات الدراسية.' },
   { id: 10, title: 'منصة الضرائب', url: 'https://ly.tax/', description: 'الخدمات الإلكترونية لمصلحة الضرائب.', _logo: 'assets/images/6.png' },
-  { id: 9, title: 'منظومة احتساب نتيجة الشهادتين', url: 'https://alariby-pixel.github.io/alsahal/', description: 'حاسبة احترافية لحساب النتائج.', _logo: 'assets/images/1.png' },
+  { id: 9, title: 'منظومة احتساب نتيجة الشهادتين', url: 'https://alariby-pixel.github.io/alsahal/', description: 'حاسبة احترافية لحساب النتائج.', _logo: 'assets/images/9.png' },
   { id: 5, title: 'بوابة إعلان نتيجة الشهادة الإعدادية والثانوية', url: 'https://finalresults.nec.gov.ly/', description: 'الاستعلام عن نتائج الشهادتين الإعدادية والثانوية.', _logo: 'assets/images/3.png' },
   { id: 11, title: 'منصة حجز العملة الأجنبية', url: 'https://fcms.cbl.gov.ly/', description: 'التابعة لمصرف ليبيا المركزي.', _logo: 'assets/images/11.png' },
   { id: 12, title: 'منظومة جمعية العقورية39', url: 'https://script.google.com/macros/s/AKfycbx7jHOWfpz-7bVdP1in4V1kEu2HfYnbQyh62IIMUVJdoRhCSSZ7lRZFKXGLm98Ogg5_sw/exec', description: 'منظومة جمعية العقورية39.', _logo: 'assets/images/12.png' },
