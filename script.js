@@ -12,9 +12,9 @@ const SYSTEMS_CONFIG = [
   { id: 11, title: 'منصة حجز العملة الأجنبية', url: 'https://fcms.cbl.gov.ly/', description: 'التابعة لمصرف ليبيا المركزي.', _logo: 'assets/images/11.png' },
   { id: 12, title: 'منظومة جمعية العقورية39', url: 'https://script.google.com/macros/s/AKfycbx7jHOWfpz-7bVdP1in4V1kEu2HfYnbQyh62IIMUVJdoRhCSSZ7lRZFKXGLm98Ogg5_sw/exec', description: 'منظومة جمعية العقورية39.', _logo: 'assets/images/12.png' },
   { id: 13, title: 'منظومة مكتب التعليم الخاص بنغازي', url: 'https://peo-benghazi.ly/school', description: 'منظومة مكتب التعليم الخاص بنغازي.', _logo: 'assets/images/13.jpg' },
-  { id: 14, title: 'منصة مدرسة الساحل للتعليم الخاص', url: 'https://sites.google.com/view/alsahaalschool', description: 'منصة مدرسة الساحل للتعليم الخاص.', _logo: 'assets/images/1.png' }
+  { id: 14, title: 'منصة مدرسة الساحل للتعليم الخاص', url: 'https://sites.google.com/view/alsahaalschool', description: 'منصة مدرسة الساحل للتعليم الخاص.', _logo: 'assets/images/1.png' },
+  { id: 15, title: 'منظومة الدرجات الشهرية والتقارير', url: 'https://script.google.com/macros/s/AKfycbzQtynUJnOXDBWE0PAaluXaNJbpX2x51nohcXQ_6FGGlhht5pfcphLsegCB3lpa_TS0/exec', description: 'إدارة الدرجات الشهرية وإصدار التقارير الأكاديمية.', _logo: 'assets/images/1.png' }
 ];
-
 (function () {
   'use strict';
 
