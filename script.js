@@ -13,7 +13,7 @@ const SYSTEMS_CONFIG = [
   { id: 12, title: 'منظومة جمعية العقورية39', url: 'https://script.google.com/macros/s/AKfycbx7jHOWfpz-7bVdP1in4V1kEu2HfYnbQyh62IIMUVJdoRhCSSZ7lRZFKXGLm98Ogg5_sw/exec', description: 'منظومة جمعية العقورية39.', _logo: 'assets/images/12.png' },
   { id: 13, title: 'منظومة مكتب التعليم الخاص بنغازي', url: 'https://peo-benghazi.ly/school', description: 'منظومة مكتب التعليم الخاص بنغازي.', _logo: 'assets/images/13.jpg' },
   { id: 14, title: 'منصة مدرسة الساحل للتعليم الخاص', url: 'https://sites.google.com/view/alsahaalschool', description: 'منصة مدرسة الساحل للتعليم الخاص.', _logo: 'assets/images/1.png' },
-  { id: 15, title: 'منظومة الدرجات الشهرية والتقارير', url: 'https://script.google.com/macros/s/AKfycbyDvIQjgyuCsSug6-Wt2d3bwSr3nISd4F8IZ4a3QkoDaqlQy1adxyv4WbK6EIyvg12H/exec', description: 'إدارة الدرجات الشهرية وإصدار التقارير الأكاديمية.', _logo: 'assets/images/1.png' }
+  { id: 15, title: 'منظومة الدرجات الشهرية والتقارير', url: 'https://script.google.com/macros/s/AKfycbyMLI_9MnIHOh_ZNRpXs1JhFlexaDvIJghO5JaVtK-cdujR7hygksqAt6RjKL0Jzh10bA/exec', description: 'إدارة الدرجات الشهرية وإصدار التقارير الأكاديمية.', _logo: 'assets/images/1.png' }
 ];
 (function () {
   'use strict';
